@@ -10,7 +10,6 @@ namespace RedBus_api.Models
     public partial class Mensagem
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long idMensagem { get; set; }
 
         public long idUsuarioDe { get; set; }

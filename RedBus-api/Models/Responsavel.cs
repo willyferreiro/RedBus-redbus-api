@@ -16,14 +16,13 @@ namespace RedBus_api.Models
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long idResponsavel { get; set; }
 
         public bool adimplente { get; set; }
 
-        public virtual Usuario Usuario { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Filho> Filho { get; set; }
+
+        public virtual Usuario Usuario { get; set; }
     }
 }

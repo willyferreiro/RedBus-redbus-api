@@ -32,14 +32,19 @@ namespace RedBus_api.Models
                 .WithRequired(e => e.Filho)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Filho>()
-                .HasMany(e => e.Responsavel)
-                .WithMany(e => e.Filho)
-                .Map(m => m.ToTable("Responsavel_Filho").MapLeftKey("idFilho").MapRightKey("idResponsavel"));
-
             modelBuilder.Entity<Mensagem>()
                 .Property(e => e.mensagem1)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Motorista>()
+                .HasMany(e => e.Viagem)
+                .WithRequired(e => e.Motorista)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<Responsavel>()
+                .HasMany(e => e.Filho)
+                .WithRequired(e => e.Responsavel)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Usuario>()
                 .Property(e => e.telefone)

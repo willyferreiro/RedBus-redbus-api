@@ -17,7 +17,6 @@ namespace RedBus_api.Models
         }
 
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long idUsuario { get; set; }
 
         [Column(TypeName = "numeric")]

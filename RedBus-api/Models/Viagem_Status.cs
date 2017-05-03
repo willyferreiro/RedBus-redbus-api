@@ -15,6 +15,7 @@ namespace RedBus_api.Models
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public byte idStatusViagem { get; set; }
 
         [Required]

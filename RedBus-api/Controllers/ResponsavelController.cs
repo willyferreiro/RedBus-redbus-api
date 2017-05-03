@@ -12,44 +12,44 @@ using RedBus_api.Models;
 
 namespace RedBus_api.Controllers
 {
-    public class MotoristaController : ApiController
+    public class ResponsavelController : ApiController
     {
         private redbusdb db = new redbusdb();
 
-        // GET: api/Motorista
-        public IQueryable<Motorista> GetMotorista()
+        // GET: api/Responsavel
+        public IQueryable<Responsavel> GetResponsavel()
         {
-            return db.Motorista;
+            return db.Responsavel;
         }
 
-        // GET: api/Motorista/5
-        [ResponseType(typeof(Motorista))]
-        public IHttpActionResult GetMotorista(long id)
+        // GET: api/Responsavel/5
+        [ResponseType(typeof(Responsavel))]
+        public IHttpActionResult GetResponsavel(long id)
         {
-            Motorista motorista = db.Motorista.Find(id);
-            if (motorista == null)
+            Responsavel responsavel = db.Responsavel.Find(id);
+            if (responsavel == null)
             {
                 return NotFound();
             }
 
-            return Ok(motorista);
+            return Ok(responsavel);
         }
 
-        // PUT: api/Motorista/5
+        // PUT: api/Responsavel/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutMotorista(long id, Motorista motorista)
+        public IHttpActionResult PutResponsavel(long id, Responsavel responsavel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != motorista.idMotorista)
+            if (id != responsavel.idResponsavel)
             {
                 return BadRequest();
             }
 
-            db.Entry(motorista).State = EntityState.Modified;
+            db.Entry(responsavel).State = EntityState.Modified;
 
             try
             {
@@ -57,7 +57,7 @@ namespace RedBus_api.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!MotoristaExists(id))
+                if (!ResponsavelExists(id))
                 {
                     return NotFound();
                 }
@@ -70,16 +70,16 @@ namespace RedBus_api.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Motorista
-        [ResponseType(typeof(Motorista))]
-        public IHttpActionResult PostMotorista(Motorista motorista)
+        // POST: api/Responsavel
+        [ResponseType(typeof(Responsavel))]
+        public IHttpActionResult PostResponsavel(Responsavel responsavel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.Motorista.Add(motorista);
+            db.Responsavel.Add(responsavel);
 
             try
             {
@@ -87,7 +87,7 @@ namespace RedBus_api.Controllers
             }
             catch (DbUpdateException)
             {
-                if (MotoristaExists(motorista.idMotorista))
+                if (ResponsavelExists(responsavel.idResponsavel))
                 {
                     return Conflict();
                 }
@@ -97,23 +97,23 @@ namespace RedBus_api.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = motorista.idMotorista }, motorista);
+            return CreatedAtRoute("DefaultApi", new { id = responsavel.idResponsavel }, responsavel);
         }
 
-        // DELETE: api/Motorista/5
-        [ResponseType(typeof(Motorista))]
-        public IHttpActionResult DeleteMotorista(long id)
+        // DELETE: api/Responsavel/5
+        [ResponseType(typeof(Responsavel))]
+        public IHttpActionResult DeleteResponsavel(long id)
         {
-            Motorista motorista = db.Motorista.Find(id);
-            if (motorista == null)
+            Responsavel responsavel = db.Responsavel.Find(id);
+            if (responsavel == null)
             {
                 return NotFound();
             }
 
-            db.Motorista.Remove(motorista);
+            db.Responsavel.Remove(responsavel);
             db.SaveChanges();
 
-            return Ok(motorista);
+            return Ok(responsavel);
         }
 
         protected override void Dispose(bool disposing)
@@ -125,9 +125,9 @@ namespace RedBus_api.Controllers
             base.Dispose(disposing);
         }
 
-        private bool MotoristaExists(long id)
+        private bool ResponsavelExists(long id)
         {
-            return db.Motorista.Count(e => e.idMotorista == id) > 0;
+            return db.Responsavel.Count(e => e.idResponsavel == id) > 0;
         }
     }
 }

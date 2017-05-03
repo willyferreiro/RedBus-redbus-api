@@ -16,13 +16,13 @@ namespace RedBus_api.Controllers
     {
         private redbusdb db = new redbusdb();
 
-        // GET: api/Viagems
+        // GET: api/Viagem
         public IQueryable<Viagem> GetViagem()
         {
             return db.Viagem;
         }
 
-        // GET: api/Viagems/5
+        // GET: api/Viagem/5
         [ResponseType(typeof(Viagem))]
         public IHttpActionResult GetViagem(long id)
         {
@@ -35,7 +35,7 @@ namespace RedBus_api.Controllers
             return Ok(viagem);
         }
 
-        // PUT: api/Viagems/5
+        // PUT: api/Viagem/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutViagem(long id, Viagem viagem)
         {
@@ -70,7 +70,7 @@ namespace RedBus_api.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Viagems
+        // POST: api/Viagem
         [ResponseType(typeof(Viagem))]
         public IHttpActionResult PostViagem(Viagem viagem)
         {
@@ -100,7 +100,7 @@ namespace RedBus_api.Controllers
             return CreatedAtRoute("DefaultApi", new { id = viagem.idViagem }, viagem);
         }
 
-        // DELETE: api/Viagems/5
+        // DELETE: api/Viagem/5
         [ResponseType(typeof(Viagem))]
         public IHttpActionResult DeleteViagem(long id)
         {
