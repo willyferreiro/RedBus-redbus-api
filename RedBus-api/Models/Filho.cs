@@ -20,6 +20,8 @@ namespace RedBus_api.Models
 
         public long idResponsavel { get; set; }
 
+        public long idMotorista { get; set; }
+
         [Required]
         [StringLength(100)]
         public string nome { get; set; }
@@ -45,6 +47,8 @@ namespace RedBus_api.Models
         public byte[] fotoCompleta { get; set; }
 
         public virtual Responsavel Responsavel { get; set; }
+
+        public virtual Motorista Motorista { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Viagem_Filho> Viagem_Filho { get; set; }

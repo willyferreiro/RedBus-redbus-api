@@ -7,6 +7,12 @@ using System.Net;
 using System.IO;
 using System;
 using System.Text;
+using System.Net.Http;
+using System.Web.Http.Hosting;
+using System.Web.Http;
+using RedBus_api.Models;
+using Newtonsoft.Json;
+using System.Web.Http.Results;
 
 namespace RedBus_api.Tests.Controllers
 {
@@ -14,20 +20,15 @@ namespace RedBus_api.Tests.Controllers
     public class FilhosControllerTest
     {
         [TestMethod]
-        public void Get()
+        public void GetFilho()
         {
-            string conteudo;
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost/");
-            request.Method = "GET";
+            var controller = new FilhoController();
+            var actionResult = controller.GetFilhos(2);
+            var response = actionResult as OkNegotiatedContentResult<List<Filho>>;
 
-            WebResponse response = request.GetResponse();
-            using (Stream responseStream = response.GetResponseStream())
-            {
-                StreamReader reader = new StramReader(responseStream, Encoding.UTF8);
-                conteudo = reader.ReadToEnd();
-            }
-            Console.Write(conteudo);
-            Console.Read();
+            Assert.IsNotNull(response);
+            var livros = response.Content;
+            Assert.AreEqual(2, livros.Count);
         }
         
     }

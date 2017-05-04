@@ -15,13 +15,7 @@ namespace RedBus_api.Controllers
     public class ViagemController : ApiController
     {
         private redbusdb db = new redbusdb();
-
-        // GET: api/Viagem
-        public List<Viagem> GetViagem()
-        {
-            return db.Viagem.ToList();
-        }
-
+       
         // GET: api/Viagem/5
         [ResponseType(typeof(Viagem))]
         public IHttpActionResult GetViagem(long id)

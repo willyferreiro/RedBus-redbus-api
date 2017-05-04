@@ -26,11 +26,32 @@ namespace RedBus_api.Controllers
             return Ok(filho);
         }
 
-        [Route("api/filhosresp/{id}")]
+
+        /// <summary>
+        /// Retorna os filhos com base no id do responsavel
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>List<Filho></returns>
+        [Route("api/filhos/{id}")]
         [HttpGet]
-        public IHttpActionResult Get(long id)
+        public IHttpActionResult GetFilhos(long id)
         {
-            List<Filho> filhos = db.Filho.Where(e => e.Responsavel.idResponsavel == id)
+            List<Filho> filhos = db.Filho.Where(e => e.idResponsavel == id)
+                .ToList<Filho>();
+
+            return Ok(filhos);
+        }
+
+        /// <summary>
+        /// Retorna os passageiros com base no id do motorista que os cadastrou
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>List<Filho></returns>
+        [Route("api/passageiros/{id}")]
+        [HttpGet]
+        public IHttpActionResult GetPassageiros(long id)
+        {
+            List<Filho> filhos = db.Filho.Where(e => e.idMotorista == id)
                 .ToList<Filho>();
 
             return Ok(filhos);
