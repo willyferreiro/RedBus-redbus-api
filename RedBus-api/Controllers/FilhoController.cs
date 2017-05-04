@@ -1,27 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using RedBus_api.Models;
+using System.Collections.Generic;
 
 namespace RedBus_api.Controllers
 {
     public class FilhoController : ApiController
     {
         private redbusdb db = new redbusdb();
-
-        // GET: api/Filho
-        public IQueryable<Filho> GetFilho()
-        {
-            return db.Filho;
-        }
-
+        
         // GET: api/Filho/5
         [ResponseType(typeof(Filho))]
         public IHttpActionResult GetFilho(long id)
@@ -33,6 +24,16 @@ namespace RedBus_api.Controllers
             }
 
             return Ok(filho);
+        }
+
+        [Route("api/filhosresp/{id}")]
+        [HttpGet]
+        public IHttpActionResult Get(long id)
+        {
+            List<Filho> filhos = db.Filho.Where(e => e.Responsavel.idResponsavel == id)
+                .ToList<Filho>();
+
+            return Ok(filhos);
         }
 
         // PUT: api/Filho/5

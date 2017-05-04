@@ -28,6 +28,14 @@ namespace RedBus_api.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Filho>()
+                .Property(e => e.enderecoCasa)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Filho>()
+                .Property(e => e.enderecoEscola)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Filho>()
                 .HasMany(e => e.Viagem_Filho)
                 .WithRequired(e => e.Filho)
                 .WillCascadeOnDelete(false);
@@ -56,6 +64,11 @@ namespace RedBus_api.Models
 
             modelBuilder.Entity<Usuario>()
                 .Property(e => e.senha)
+                .IsFixedLength()
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Usuario>()
+                .Property(e => e.tipoUsuario)
                 .IsFixedLength()
                 .IsUnicode(false);
 

@@ -17,9 +17,9 @@ namespace RedBus_api.Controllers
         private redbusdb db = new redbusdb();
 
         // GET: api/Viagem
-        public IQueryable<Viagem> GetViagem()
+        public List<Viagem> GetViagem()
         {
-            return db.Viagem;
+            return db.Viagem.ToList();
         }
 
         // GET: api/Viagem/5
