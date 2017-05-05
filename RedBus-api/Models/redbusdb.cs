@@ -10,6 +10,7 @@ namespace RedBus_api.Models
         public redbusdb()
             : base("name=redbusdb")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
 
         public virtual DbSet<Filho> Filho { get; set; }
@@ -43,6 +44,11 @@ namespace RedBus_api.Models
             modelBuilder.Entity<Mensagem>()
                 .Property(e => e.mensagem1)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Motorista>()
+                .HasMany(e => e.Filho)
+                .WithRequired(e => e.Motorista)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Motorista>()
                 .HasMany(e => e.Viagem)

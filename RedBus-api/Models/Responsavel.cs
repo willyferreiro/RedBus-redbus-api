@@ -16,6 +16,7 @@ namespace RedBus_api.Models
         }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long idResponsavel { get; set; }
 
         public bool adimplente { get; set; }
