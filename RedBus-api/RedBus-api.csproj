@@ -208,7 +208,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Filho.cs" />
     <Compile Include="Models\Mensagem.cs" />
     <Compile Include="Models\redbusdb.cs" />

@@ -12,7 +12,7 @@ namespace RedBus_api.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Responsavel()
         {
-            Filho = new HashSet<Filho>();
+            Filhos = new HashSet<Filho>();
         }
 
         [Key]
@@ -22,7 +22,7 @@ namespace RedBus_api.Models
         public bool adimplente { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Filho> Filho { get; set; }
+        public virtual ICollection<Filho> Filhos { get; set; }
 
         public virtual Usuario Usuario { get; set; }
     }

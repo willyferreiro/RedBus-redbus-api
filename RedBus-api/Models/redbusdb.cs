@@ -41,21 +41,21 @@ namespace RedBus_api.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Mensagem>()
-                .Property(e => e.mensagem1)
+                .Property(e => e.mensagem)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Motorista>()
-                .HasMany(e => e.Filho)
+                .HasMany(e => e.Filhos)
                 .WithRequired(e => e.Motorista)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Motorista>()
-                .HasMany(e => e.Viagem)
+                .HasMany(e => e.Viagens)
                 .WithRequired(e => e.Motorista)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Responsavel>()
-                .HasMany(e => e.Filho)
+                .HasMany(e => e.Filhos)
                 .WithRequired(e => e.Responsavel)
                 .WillCascadeOnDelete(false);
 
@@ -78,14 +78,14 @@ namespace RedBus_api.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Usuario>()
-                .HasMany(e => e.Mensagem)
-                .WithRequired(e => e.Usuario)
+                .HasMany(e => e.MensagensDe)
+                .WithRequired(e => e.UsuarioDe)
                 .HasForeignKey(e => e.idUsuarioDe)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Usuario>()
-                .HasMany(e => e.Mensagem1)
-                .WithRequired(e => e.Usuario1)
+                .HasMany(e => e.MensagensPara)
+                .WithRequired(e => e.UsuarioPara)
                 .HasForeignKey(e => e.idUsuarioPara)
                 .WillCascadeOnDelete(false);
 

@@ -18,17 +18,16 @@ namespace RedBus_api.Models
 
         public DateTime dataMensagem { get; set; }
 
-        [Column("mensagem")]
         [Required]
         [StringLength(500)]
-        public string mensagem1 { get; set; }
+        public string mensagem { get; set; }
 
         public bool entregue { get; set; }
 
         public bool visualizada { get; set; }
 
-        public virtual Usuario Usuario { get; set; }
+        public virtual Usuario UsuarioDe { get; set; }
 
-        public virtual Usuario Usuario1 { get; set; }
+        public virtual Usuario UsuarioPara { get; set; }
     }
 }

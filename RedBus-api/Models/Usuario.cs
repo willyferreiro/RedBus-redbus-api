@@ -12,8 +12,8 @@ namespace RedBus_api.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Usuario()
         {
-            Mensagem = new HashSet<Mensagem>();
-            Mensagem1 = new HashSet<Mensagem>();
+            MensagensDe = new HashSet<Mensagem>();
+            MensagensPara = new HashSet<Mensagem>();
         }
 
         [Key]
@@ -35,10 +35,10 @@ namespace RedBus_api.Models
         public string tipoUsuario { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Mensagem> Mensagem { get; set; }
+        public virtual ICollection<Mensagem> MensagensDe { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Mensagem> Mensagem1 { get; set; }
+        public virtual ICollection<Mensagem> MensagensPara { get; set; }
 
         public virtual Motorista Motorista { get; set; }
 
