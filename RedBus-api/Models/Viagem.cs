@@ -32,7 +32,8 @@ namespace RedBus_api.Models
 
         public double? posicaoFim_longitude { get; set; }
 
-        public StatusViagem statusViagem { get; set; }
+        [Column(TypeName = "numeric")]
+        public decimal statusViagem { get; set; }
 
         public virtual Motorista Motorista { get; set; }
 

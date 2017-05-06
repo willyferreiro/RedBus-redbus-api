@@ -47,16 +47,19 @@ namespace RedBus_api.Models
             modelBuilder.Entity<Motorista>()
                 .HasMany(e => e.Filhos)
                 .WithRequired(e => e.Motorista)
+                .HasForeignKey(e => e.idMotorista)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Motorista>()
                 .HasMany(e => e.Viagens)
                 .WithRequired(e => e.Motorista)
+                .HasForeignKey(e => e.idMotorista)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Responsavel>()
                 .HasMany(e => e.Filhos)
                 .WithRequired(e => e.Responsavel)
+                .HasForeignKey(e => e.idResponsavel)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Usuario>()
@@ -96,6 +99,10 @@ namespace RedBus_api.Models
             modelBuilder.Entity<Usuario>()
                 .HasOptional(e => e.Responsavel)
                 .WithRequired(e => e.Usuario);
+
+            modelBuilder.Entity<Viagem>()
+                .Property(e => e.statusViagem)
+                .HasPrecision(1, 0);
 
             modelBuilder.Entity<Viagem>()
                 .HasMany(e => e.Viagem_Filho)

@@ -18,6 +18,7 @@ namespace RedBus_api.Models
 
         public DateTime dataMensagem { get; set; }
 
+        [Column("mensagem")]
         [Required]
         [StringLength(500)]
         public string mensagem { get; set; }

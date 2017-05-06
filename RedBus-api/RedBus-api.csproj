@@ -210,14 +210,13 @@
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Models\Filho.cs" />
     <Compile Include="Models\Mensagem.cs" />
-    <Compile Include="Models\redbusdb.cs" />
     <Compile Include="Models\Motorista.cs" />
+    <Compile Include="Models\redbusdb.cs" />
     <Compile Include="Models\Responsavel.cs" />
     <Compile Include="Models\StatusViagem.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\Viagem.cs" />
     <Compile Include="Models\Viagem_Filho.cs" />
-    <Compile Include="Models\Viagem_Status.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

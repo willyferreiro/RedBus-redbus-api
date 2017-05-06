@@ -1,4 +1,4 @@
-    namespace RedBus_api.Models
+namespace RedBus_api.Models
 {
     using System;
     using System.Collections.Generic;
