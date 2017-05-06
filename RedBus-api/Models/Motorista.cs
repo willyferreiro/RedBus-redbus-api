@@ -18,7 +18,7 @@ namespace RedBus_api.Models
 
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public long idMotorista { get; set; }
+        public long idUsuario { get; set; }
 
         public bool emViagem { get; set; }
 

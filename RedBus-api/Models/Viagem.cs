@@ -32,13 +32,11 @@ namespace RedBus_api.Models
 
         public double? posicaoFim_longitude { get; set; }
 
-        public byte idStatusViagem { get; set; }
+        public StatusViagem statusViagem { get; set; }
 
         public virtual Motorista Motorista { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Viagem_Filho> Viagem_Filho { get; set; }
-
-        public virtual Viagem_Status Viagem_Status { get; set; }
     }
 }

@@ -20,7 +20,6 @@ namespace RedBus_api.Models
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Viagem> Viagem { get; set; }
         public virtual DbSet<Viagem_Filho> Viagem_Filho { get; set; }
-        public virtual DbSet<Viagem_Status> Viagem_Status { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -101,16 +100,6 @@ namespace RedBus_api.Models
             modelBuilder.Entity<Viagem>()
                 .HasMany(e => e.Viagem_Filho)
                 .WithRequired(e => e.Viagem)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<Viagem_Status>()
-                .Property(e => e.descricao)
-                .IsFixedLength()
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Viagem_Status>()
-                .HasMany(e => e.Viagem)
-                .WithRequired(e => e.Viagem_Status)
                 .WillCascadeOnDelete(false);
         }
     }
