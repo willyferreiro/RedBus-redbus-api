@@ -68,6 +68,8 @@ namespace RedBus_api.Controllers
         [ResponseType(typeof(Viagem))]
         public IHttpActionResult PostViagem(Viagem viagem)
         {
+            viagem.dataInicioViagem = DateTime.Now;
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

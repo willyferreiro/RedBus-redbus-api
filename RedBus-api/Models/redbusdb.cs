@@ -28,14 +28,6 @@ namespace RedBus_api.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Filho>()
-                .Property(e => e.enderecoCasa)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Filho>()
-                .Property(e => e.enderecoEscola)
-                .IsUnicode(false);
-
-            modelBuilder.Entity<Filho>()
                 .HasMany(e => e.Viagem_Filho)
                 .WithRequired(e => e.Filho)
                 .WillCascadeOnDelete(false);
@@ -50,11 +42,11 @@ namespace RedBus_api.Models
                 .HasForeignKey(e => e.idMotorista)
                 .WillCascadeOnDelete(false);
 
-            modelBuilder.Entity<Motorista>()
-                .HasMany(e => e.Viagens)
-                .WithRequired(e => e.Motorista)
-                .HasForeignKey(e => e.idMotorista)
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Motorista>()
+            //    .HasMany(e => e.Viagens)
+            //    .WithRequired(e => e.Motorista)
+            //    .HasForeignKey(e => e.idMotorista)
+            //    .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Responsavel>()
                 .HasMany(e => e.Filhos)

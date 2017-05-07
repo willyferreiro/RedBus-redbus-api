@@ -30,15 +30,13 @@ namespace RedBus_api.Models
 
         public bool? embarcado { get; set; }
 
-        public double? posicao_latitude { get; set; }
+        public double? posicao_latitudeCasa { get; set; }
 
-        public double? posicao_longitutde { get; set; }
+        public double? posicao_longitutdeCasa { get; set; }
 
-        [StringLength(100)]
-        public string enderecoCasa { get; set; }
+        public double? posicao_latitudeEscola { get; set; }
 
-        [StringLength(100)]
-        public string enderecoEscola { get; set; }
+        public double? posicao_longitutdeEscola { get; set; }
 
         public byte[] foto { get; set; }
 

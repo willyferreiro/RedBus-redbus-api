@@ -16,23 +16,20 @@ namespace RedBus_api.Controllers
     {
         private redbusdb db = new redbusdb();
 
-        // GET: api/Mensagem
-        public List<Mensagem> GetMensagens()
+        //Mensagens par apush notification
+        [HttpGet]
+        [ResponseType(typeof(List<Mensagem>))]
+        public IHttpActionResult GetMensagens(long id)
         {
-            return db.Mensagem.ToList<Mensagem>();
-        }
-
-        // GET: api/Mensagem/5
-        [ResponseType(typeof(Mensagem))]
-        public IHttpActionResult GetMensagem(long id)
-        {
-            Mensagem mensagem = db.Mensagem.Find(id);
-            if (mensagem == null)
+            List<Mensagem> mensagens = db.Mensagem.Where(e => e.idUsuarioPara == id && e.entregue == false)
+                .ToList<Mensagem>();
+            
+            if (mensagens == null)
             {
                 return NotFound();
             }
 
-            return Ok(mensagem);
+            return Ok(mensagens);
         }
 
         // PUT: api/Mensagem/5
