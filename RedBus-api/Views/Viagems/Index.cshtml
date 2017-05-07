@@ -1,0 +1,83 @@
+﻿@model IEnumerable<RedBus_api.Models.Viagem>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Motorista.idUsuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dataInicioViagem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.dataFimViagem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.posicaoInicio_latitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.posicaoInicio_longitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.posicaoFim_latitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.posicaoFim_longitude)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.statusViagem)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Motorista.idUsuario)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataInicioViagem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.dataFimViagem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.posicaoInicio_latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.posicaoInicio_longitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.posicaoFim_latitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.posicaoFim_longitude)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.statusViagem)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.idViagem }) |
+                @Html.ActionLink("Details", "Details", new { id=item.idViagem }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.idViagem })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

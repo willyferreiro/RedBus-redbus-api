@@ -42,11 +42,11 @@ namespace RedBus_api.Models
                 .HasForeignKey(e => e.idMotorista)
                 .WillCascadeOnDelete(false);
 
-            //modelBuilder.Entity<Motorista>()
-            //    .HasMany(e => e.Viagens)
-            //    .WithRequired(e => e.Motorista)
-            //    .HasForeignKey(e => e.idMotorista)
-            //    .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Motorista>()
+                .HasMany(e => e.Viagens)
+                .WithRequired(e => e.Motorista)
+                .HasForeignKey(e => e.idMotorista)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Responsavel>()
                 .HasMany(e => e.Filhos)

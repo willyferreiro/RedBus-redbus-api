@@ -204,6 +204,7 @@
     <Compile Include="Controllers\FilhoController.cs" />
     <Compile Include="Controllers\MensagemController.cs" />
     <Compile Include="Controllers\ViagemController.cs" />
+    <Compile Include="Controllers\ViagemsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -270,6 +271,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Viagems\Create.cshtml" />
+    <Content Include="Views\Viagems\Delete.cshtml" />
+    <Content Include="Views\Viagems\Details.cshtml" />
+    <Content Include="Views\Viagems\Edit.cshtml" />
+    <Content Include="Views\Viagems\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

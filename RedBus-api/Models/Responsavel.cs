@@ -19,8 +19,6 @@ namespace RedBus_api.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long idUsuario { get; set; }
 
-        public bool adimplente { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Filho> Filhos { get; set; }
 

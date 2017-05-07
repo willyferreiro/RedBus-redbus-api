@@ -26,6 +26,8 @@ namespace RedBus_api.Models
 
         public double? posicao_longitude { get; set; }
 
+        public bool adimplente { get; set; }
+
         public byte[] foto { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

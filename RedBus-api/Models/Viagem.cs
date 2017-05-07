@@ -22,7 +22,7 @@ namespace RedBus_api.Models
 
         public DateTime dataInicioViagem { get; set; }
 
-        public DateTime dataFimViagem { get; set; }
+        public DateTime? dataFimViagem { get; set; }
 
         public double posicaoInicio_latitude { get; set; }
 
@@ -35,7 +35,7 @@ namespace RedBus_api.Models
         [Column(TypeName = "numeric")]
         public decimal statusViagem { get; set; }
 
-        //public virtual Motorista Motorista { get; set; }
+        public virtual Motorista Motorista { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Viagem_Filho> Viagem_Filho { get; set; }
