@@ -1,0 +1,624 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="redbusdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Filho">
+          <Key>
+            <PropertyRef Name="idFilho" />
+          </Key>
+          <Property Name="idFilho" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idResponsavel" Type="bigint" Nullable="false" />
+          <Property Name="idMotorista" Type="bigint" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="emViagem" Type="bit" />
+          <Property Name="embarcado" Type="bit" />
+          <Property Name="posicao_latitudeCasa" Type="float" />
+          <Property Name="posicao_longitutdeCasa" Type="float" />
+          <Property Name="posicao_latitudeEscola" Type="float" />
+          <Property Name="posicao_longitutdeEscola" Type="float" />
+          <Property Name="foto" Type="varbinary(max)" />
+          <Property Name="fotoCompleta" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Mensagem">
+          <Key>
+            <PropertyRef Name="idMensagem" />
+          </Key>
+          <Property Name="idMensagem" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUsuarioDe" Type="bigint" Nullable="false" />
+          <Property Name="idUsuarioPara" Type="bigint" Nullable="false" />
+          <Property Name="dataMensagem" Type="datetime" Nullable="false" />
+          <Property Name="mensagem" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="entregue" Type="bit" Nullable="false" />
+          <Property Name="visualizada" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Motorista">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="bigint" Nullable="false" />
+          <Property Name="emViagem" Type="bit" Nullable="false" />
+          <Property Name="posicao_Latitude" Type="float" />
+          <Property Name="posicao_longitude" Type="float" />
+          <Property Name="adimplente" Type="bit" Nullable="false" />
+          <Property Name="foto" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Responsavel">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="telefone" Type="numeric" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="nome" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="senha" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="tipoUsuario" Type="char" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Viagem">
+          <Key>
+            <PropertyRef Name="idViagem" />
+          </Key>
+          <Property Name="idViagem" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idMotorista" Type="bigint" Nullable="false" />
+          <Property Name="dataInicioViagem" Type="datetime" Nullable="false" />
+          <Property Name="dataFimViagem" Type="datetime" />
+          <Property Name="posicaoInicio_latitude" Type="float" Nullable="false" />
+          <Property Name="posicaoInicio_longitude" Type="float" Nullable="false" />
+          <Property Name="posicaoFim_latitude" Type="float" />
+          <Property Name="posicaoFim_longitude" Type="float" />
+          <Property Name="statusViagem" Type="numeric" Precision="1" Scale="0" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Viagem_Filho">
+          <Key>
+            <PropertyRef Name="idVIagem" />
+            <PropertyRef Name="idFilho" />
+          </Key>
+          <Property Name="idVIagem" Type="bigint" Nullable="false" />
+          <Property Name="idFilho" Type="bigint" Nullable="false" />
+          <Property Name="dataEmbarque" Type="datetime" />
+          <Property Name="dataDesembarque" Type="datetime" />
+          <Property Name="posicaoEmbarque_latitude" Type="float" />
+          <Property Name="posicaoEmbarque_longitude" Type="float" />
+          <Property Name="posicaoDesembarque_latitude" Type="float" />
+          <Property Name="posicaoDesembarque_longitude" Type="float" />
+        </EntityType>
+        <Association Name="FK_Filho_Motorista">
+          <End Role="Motorista" Type="Self.Motorista" Multiplicity="1" />
+          <End Role="Filho" Type="Self.Filho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Motorista">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Filho">
+              <PropertyRef Name="idMotorista" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Filho_Responsavel">
+          <End Role="Responsavel" Type="Self.Responsavel" Multiplicity="1" />
+          <End Role="Filho" Type="Self.Filho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Responsavel">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Filho">
+              <PropertyRef Name="idResponsavel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mensagem_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Mensagem" Type="Self.Mensagem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Mensagem">
+              <PropertyRef Name="idUsuarioDe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mensagem_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Mensagem" Type="Self.Mensagem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Mensagem">
+              <PropertyRef Name="idUsuarioPara" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Motorista_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Motorista" Type="Self.Motorista" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Motorista">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Responsavel_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Responsavel" Type="Self.Responsavel" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Responsavel">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Viagem_Filho_Filho">
+          <End Role="Filho" Type="Self.Filho" Multiplicity="1" />
+          <End Role="Viagem_Filho" Type="Self.Viagem_Filho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Filho">
+              <PropertyRef Name="idFilho" />
+            </Principal>
+            <Dependent Role="Viagem_Filho">
+              <PropertyRef Name="idFilho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Viagem_Filho_Viagem">
+          <End Role="Viagem" Type="Self.Viagem" Multiplicity="1" />
+          <End Role="Viagem_Filho" Type="Self.Viagem_Filho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Viagem">
+              <PropertyRef Name="idViagem" />
+            </Principal>
+            <Dependent Role="Viagem_Filho">
+              <PropertyRef Name="idVIagem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Viagem_Motorista">
+          <End Role="Motorista" Type="Self.Motorista" Multiplicity="1" />
+          <End Role="Viagem" Type="Self.Viagem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Motorista">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Viagem">
+              <PropertyRef Name="idMotorista" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="redbusdbModelStoreContainer">
+          <EntitySet Name="Filho" EntityType="Self.Filho" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mensagem" EntityType="Self.Mensagem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Motorista" EntityType="Self.Motorista" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Responsavel" EntityType="Self.Responsavel" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Viagem" EntityType="Self.Viagem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Viagem_Filho" EntityType="Self.Viagem_Filho" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Filho_Motorista" Association="Self.FK_Filho_Motorista">
+            <End Role="Motorista" EntitySet="Motorista" />
+            <End Role="Filho" EntitySet="Filho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Filho_Responsavel" Association="Self.FK_Filho_Responsavel">
+            <End Role="Responsavel" EntitySet="Responsavel" />
+            <End Role="Filho" EntitySet="Filho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mensagem_Usuario" Association="Self.FK_Mensagem_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Mensagem" EntitySet="Mensagem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mensagem_Usuario1" Association="Self.FK_Mensagem_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Mensagem" EntitySet="Mensagem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Motorista_Usuario" Association="Self.FK_Motorista_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Motorista" EntitySet="Motorista" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Responsavel_Usuario" Association="Self.FK_Responsavel_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Responsavel" EntitySet="Responsavel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Viagem_Filho_Filho" Association="Self.FK_Viagem_Filho_Filho">
+            <End Role="Filho" EntitySet="Filho" />
+            <End Role="Viagem_Filho" EntitySet="Viagem_Filho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Viagem_Filho_Viagem" Association="Self.FK_Viagem_Filho_Viagem">
+            <End Role="Viagem" EntitySet="Viagem" />
+            <End Role="Viagem_Filho" EntitySet="Viagem_Filho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Viagem_Motorista" Association="Self.FK_Viagem_Motorista">
+            <End Role="Motorista" EntitySet="Motorista" />
+            <End Role="Viagem" EntitySet="Viagem" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="redbusdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Filho">
+          <Key>
+            <PropertyRef Name="idFilho" />
+          </Key>
+          <Property Name="idFilho" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idResponsavel" Type="Int64" Nullable="false" />
+          <Property Name="idMotorista" Type="Int64" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="emViagem" Type="Boolean" />
+          <Property Name="embarcado" Type="Boolean" />
+          <Property Name="posicao_latitudeCasa" Type="Double" />
+          <Property Name="posicao_longitutdeCasa" Type="Double" />
+          <Property Name="posicao_latitudeEscola" Type="Double" />
+          <Property Name="posicao_longitutdeEscola" Type="Double" />
+          <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="fotoCompleta" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Motorista" Relationship="Self.FK_Filho_Motorista" FromRole="Filho" ToRole="Motorista" />
+          <NavigationProperty Name="Responsavel" Relationship="Self.FK_Filho_Responsavel" FromRole="Filho" ToRole="Responsavel" />
+          <NavigationProperty Name="Viagem_Filho" Relationship="Self.FK_Viagem_Filho_Filho" FromRole="Filho" ToRole="Viagem_Filho" />
+        </EntityType>
+        <EntityType Name="Mensagem">
+          <Key>
+            <PropertyRef Name="idMensagem" />
+          </Key>
+          <Property Name="idMensagem" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUsuarioDe" Type="Int64" Nullable="false" />
+          <Property Name="idUsuarioPara" Type="Int64" Nullable="false" />
+          <Property Name="dataMensagem" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="mensagem1" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="entregue" Type="Boolean" Nullable="false" />
+          <Property Name="visualizada" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Mensagem_Usuario" FromRole="Mensagem" ToRole="Usuario" />
+          <NavigationProperty Name="Usuario1" Relationship="Self.FK_Mensagem_Usuario1" FromRole="Mensagem" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Motorista">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int64" Nullable="false" />
+          <Property Name="emViagem" Type="Boolean" Nullable="false" />
+          <Property Name="posicao_Latitude" Type="Double" />
+          <Property Name="posicao_longitude" Type="Double" />
+          <Property Name="adimplente" Type="Boolean" Nullable="false" />
+          <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Filho" Relationship="Self.FK_Filho_Motorista" FromRole="Motorista" ToRole="Filho" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Motorista_Usuario" FromRole="Motorista" ToRole="Usuario" />
+          <NavigationProperty Name="Viagem" Relationship="Self.FK_Viagem_Motorista" FromRole="Motorista" ToRole="Viagem" />
+        </EntityType>
+        <EntityType Name="Responsavel">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Filho" Relationship="Self.FK_Filho_Responsavel" FromRole="Responsavel" ToRole="Filho" />
+          <NavigationProperty Name="Usuario" Relationship="Self.FK_Responsavel_Usuario" FromRole="Responsavel" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="telefone" Type="Decimal" Precision="11" Scale="0" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="senha" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="tipoUsuario" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Mensagem" Relationship="Self.FK_Mensagem_Usuario" FromRole="Usuario" ToRole="Mensagem" />
+          <NavigationProperty Name="Mensagem1" Relationship="Self.FK_Mensagem_Usuario1" FromRole="Usuario" ToRole="Mensagem" />
+          <NavigationProperty Name="Motorista" Relationship="Self.FK_Motorista_Usuario" FromRole="Usuario" ToRole="Motorista" />
+          <NavigationProperty Name="Responsavel" Relationship="Self.FK_Responsavel_Usuario" FromRole="Usuario" ToRole="Responsavel" />
+        </EntityType>
+        <EntityType Name="Viagem">
+          <Key>
+            <PropertyRef Name="idViagem" />
+          </Key>
+          <Property Name="idViagem" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idMotorista" Type="Int64" Nullable="false" />
+          <Property Name="dataInicioViagem" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="dataFimViagem" Type="DateTime" Precision="3" />
+          <Property Name="posicaoInicio_latitude" Type="Double" Nullable="false" />
+          <Property Name="posicaoInicio_longitude" Type="Double" Nullable="false" />
+          <Property Name="posicaoFim_latitude" Type="Double" />
+          <Property Name="posicaoFim_longitude" Type="Double" />
+          <Property Name="statusViagem" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
+          <NavigationProperty Name="Motorista" Relationship="Self.FK_Viagem_Motorista" FromRole="Viagem" ToRole="Motorista" />
+          <NavigationProperty Name="Viagem_Filho" Relationship="Self.FK_Viagem_Filho_Viagem" FromRole="Viagem" ToRole="Viagem_Filho" />
+        </EntityType>
+        <EntityType Name="Viagem_Filho">
+          <Key>
+            <PropertyRef Name="idVIagem" />
+            <PropertyRef Name="idFilho" />
+          </Key>
+          <Property Name="idVIagem" Type="Int64" Nullable="false" />
+          <Property Name="idFilho" Type="Int64" Nullable="false" />
+          <Property Name="dataEmbarque" Type="DateTime" Precision="3" />
+          <Property Name="dataDesembarque" Type="DateTime" Precision="3" />
+          <Property Name="posicaoEmbarque_latitude" Type="Double" />
+          <Property Name="posicaoEmbarque_longitude" Type="Double" />
+          <Property Name="posicaoDesembarque_latitude" Type="Double" />
+          <Property Name="posicaoDesembarque_longitude" Type="Double" />
+          <NavigationProperty Name="Filho" Relationship="Self.FK_Viagem_Filho_Filho" FromRole="Viagem_Filho" ToRole="Filho" />
+          <NavigationProperty Name="Viagem" Relationship="Self.FK_Viagem_Filho_Viagem" FromRole="Viagem_Filho" ToRole="Viagem" />
+        </EntityType>
+        <Association Name="FK_Filho_Motorista">
+          <End Role="Motorista" Type="Self.Motorista" Multiplicity="1" />
+          <End Role="Filho" Type="Self.Filho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Motorista">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Filho">
+              <PropertyRef Name="idMotorista" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Filho_Responsavel">
+          <End Role="Responsavel" Type="Self.Responsavel" Multiplicity="1" />
+          <End Role="Filho" Type="Self.Filho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Responsavel">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Filho">
+              <PropertyRef Name="idResponsavel" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Viagem_Filho_Filho">
+          <End Role="Filho" Type="Self.Filho" Multiplicity="1" />
+          <End Role="Viagem_Filho" Type="Self.Viagem_Filho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Filho">
+              <PropertyRef Name="idFilho" />
+            </Principal>
+            <Dependent Role="Viagem_Filho">
+              <PropertyRef Name="idFilho" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mensagem_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Mensagem" Type="Self.Mensagem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Mensagem">
+              <PropertyRef Name="idUsuarioDe" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Mensagem_Usuario1">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Mensagem" Type="Self.Mensagem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Mensagem">
+              <PropertyRef Name="idUsuarioPara" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Motorista_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Motorista" Type="Self.Motorista" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Motorista">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Viagem_Motorista">
+          <End Role="Motorista" Type="Self.Motorista" Multiplicity="1" />
+          <End Role="Viagem" Type="Self.Viagem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Motorista">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Viagem">
+              <PropertyRef Name="idMotorista" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Responsavel_Usuario">
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+          <End Role="Responsavel" Type="Self.Responsavel" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="Responsavel">
+              <PropertyRef Name="idUsuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Viagem_Filho_Viagem">
+          <End Role="Viagem" Type="Self.Viagem" Multiplicity="1" />
+          <End Role="Viagem_Filho" Type="Self.Viagem_Filho" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Viagem">
+              <PropertyRef Name="idViagem" />
+            </Principal>
+            <Dependent Role="Viagem_Filho">
+              <PropertyRef Name="idVIagem" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="redbusdb" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Filho" EntityType="Self.Filho" />
+          <EntitySet Name="Mensagem" EntityType="Self.Mensagem" />
+          <EntitySet Name="Motorista" EntityType="Self.Motorista" />
+          <EntitySet Name="Responsavel" EntityType="Self.Responsavel" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" />
+          <EntitySet Name="Viagem" EntityType="Self.Viagem" />
+          <EntitySet Name="Viagem_Filho" EntityType="Self.Viagem_Filho" />
+          <AssociationSet Name="FK_Filho_Motorista" Association="Self.FK_Filho_Motorista">
+            <End Role="Motorista" EntitySet="Motorista" />
+            <End Role="Filho" EntitySet="Filho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Filho_Responsavel" Association="Self.FK_Filho_Responsavel">
+            <End Role="Responsavel" EntitySet="Responsavel" />
+            <End Role="Filho" EntitySet="Filho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Viagem_Filho_Filho" Association="Self.FK_Viagem_Filho_Filho">
+            <End Role="Filho" EntitySet="Filho" />
+            <End Role="Viagem_Filho" EntitySet="Viagem_Filho" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mensagem_Usuario" Association="Self.FK_Mensagem_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Mensagem" EntitySet="Mensagem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Mensagem_Usuario1" Association="Self.FK_Mensagem_Usuario1">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Mensagem" EntitySet="Mensagem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Motorista_Usuario" Association="Self.FK_Motorista_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Motorista" EntitySet="Motorista" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Viagem_Motorista" Association="Self.FK_Viagem_Motorista">
+            <End Role="Motorista" EntitySet="Motorista" />
+            <End Role="Viagem" EntitySet="Viagem" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Responsavel_Usuario" Association="Self.FK_Responsavel_Usuario">
+            <End Role="Usuario" EntitySet="Usuario" />
+            <End Role="Responsavel" EntitySet="Responsavel" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Viagem_Filho_Viagem" Association="Self.FK_Viagem_Filho_Viagem">
+            <End Role="Viagem" EntitySet="Viagem" />
+            <End Role="Viagem_Filho" EntitySet="Viagem_Filho" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="redbusdbModelStoreContainer" CdmEntityContainer="redbusdb">
+          <EntitySetMapping Name="Filho">
+            <EntityTypeMapping TypeName="redbusdbModel.Filho">
+              <MappingFragment StoreEntitySet="Filho">
+                <ScalarProperty Name="idFilho" ColumnName="idFilho" />
+                <ScalarProperty Name="idResponsavel" ColumnName="idResponsavel" />
+                <ScalarProperty Name="idMotorista" ColumnName="idMotorista" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="emViagem" ColumnName="emViagem" />
+                <ScalarProperty Name="embarcado" ColumnName="embarcado" />
+                <ScalarProperty Name="posicao_latitudeCasa" ColumnName="posicao_latitudeCasa" />
+                <ScalarProperty Name="posicao_longitutdeCasa" ColumnName="posicao_longitutdeCasa" />
+                <ScalarProperty Name="posicao_latitudeEscola" ColumnName="posicao_latitudeEscola" />
+                <ScalarProperty Name="posicao_longitutdeEscola" ColumnName="posicao_longitutdeEscola" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+                <ScalarProperty Name="fotoCompleta" ColumnName="fotoCompleta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mensagem">
+            <EntityTypeMapping TypeName="redbusdbModel.Mensagem">
+              <MappingFragment StoreEntitySet="Mensagem">
+                <ScalarProperty Name="idMensagem" ColumnName="idMensagem" />
+                <ScalarProperty Name="idUsuarioDe" ColumnName="idUsuarioDe" />
+                <ScalarProperty Name="idUsuarioPara" ColumnName="idUsuarioPara" />
+                <ScalarProperty Name="dataMensagem" ColumnName="dataMensagem" />
+                <ScalarProperty Name="mensagem1" ColumnName="mensagem" />
+                <ScalarProperty Name="entregue" ColumnName="entregue" />
+                <ScalarProperty Name="visualizada" ColumnName="visualizada" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Motorista">
+            <EntityTypeMapping TypeName="redbusdbModel.Motorista">
+              <MappingFragment StoreEntitySet="Motorista">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="emViagem" ColumnName="emViagem" />
+                <ScalarProperty Name="posicao_Latitude" ColumnName="posicao_Latitude" />
+                <ScalarProperty Name="posicao_longitude" ColumnName="posicao_longitude" />
+                <ScalarProperty Name="adimplente" ColumnName="adimplente" />
+                <ScalarProperty Name="foto" ColumnName="foto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Responsavel">
+            <EntityTypeMapping TypeName="redbusdbModel.Responsavel">
+              <MappingFragment StoreEntitySet="Responsavel">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="redbusdbModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="telefone" ColumnName="telefone" />
+                <ScalarProperty Name="nome" ColumnName="nome" />
+                <ScalarProperty Name="senha" ColumnName="senha" />
+                <ScalarProperty Name="tipoUsuario" ColumnName="tipoUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Viagem">
+            <EntityTypeMapping TypeName="redbusdbModel.Viagem">
+              <MappingFragment StoreEntitySet="Viagem">
+                <ScalarProperty Name="idViagem" ColumnName="idViagem" />
+                <ScalarProperty Name="idMotorista" ColumnName="idMotorista" />
+                <ScalarProperty Name="dataInicioViagem" ColumnName="dataInicioViagem" />
+                <ScalarProperty Name="dataFimViagem" ColumnName="dataFimViagem" />
+                <ScalarProperty Name="posicaoInicio_latitude" ColumnName="posicaoInicio_latitude" />
+                <ScalarProperty Name="posicaoInicio_longitude" ColumnName="posicaoInicio_longitude" />
+                <ScalarProperty Name="posicaoFim_latitude" ColumnName="posicaoFim_latitude" />
+                <ScalarProperty Name="posicaoFim_longitude" ColumnName="posicaoFim_longitude" />
+                <ScalarProperty Name="statusViagem" ColumnName="statusViagem" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Viagem_Filho">
+            <EntityTypeMapping TypeName="redbusdbModel.Viagem_Filho">
+              <MappingFragment StoreEntitySet="Viagem_Filho">
+                <ScalarProperty Name="idVIagem" ColumnName="idVIagem" />
+                <ScalarProperty Name="idFilho" ColumnName="idFilho" />
+                <ScalarProperty Name="dataEmbarque" ColumnName="dataEmbarque" />
+                <ScalarProperty Name="dataDesembarque" ColumnName="dataDesembarque" />
+                <ScalarProperty Name="posicaoEmbarque_latitude" ColumnName="posicaoEmbarque_latitude" />
+                <ScalarProperty Name="posicaoEmbarque_longitude" ColumnName="posicaoEmbarque_longitude" />
+                <ScalarProperty Name="posicaoDesembarque_latitude" ColumnName="posicaoDesembarque_latitude" />
+                <ScalarProperty Name="posicaoDesembarque_longitude" ColumnName="posicaoDesembarque_longitude" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

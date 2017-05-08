@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="152eb388720a4532a7cccbb5214f3327" Name="Diagram1">
+        <EntityTypeShape EntityType="redbusdbModel.Filho" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="redbusdbModel.Mensagem" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="redbusdbModel.Motorista" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="redbusdbModel.Responsavel" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="redbusdbModel.Usuario" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="redbusdbModel.Viagem" Width="1.5" PointX="5.25" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="redbusdbModel.Viagem_Filho" Width="1.5" PointX="7.5" PointY="9.75" IsExpanded="true" />
+        <AssociationConnector Association="redbusdbModel.FK_Filho_Motorista" ManuallyRouted="false" />
+        <AssociationConnector Association="redbusdbModel.FK_Filho_Responsavel" ManuallyRouted="false" />
+        <AssociationConnector Association="redbusdbModel.FK_Viagem_Filho_Filho" ManuallyRouted="false" />
+        <AssociationConnector Association="redbusdbModel.FK_Mensagem_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="redbusdbModel.FK_Mensagem_Usuario1" ManuallyRouted="false" />
+        <AssociationConnector Association="redbusdbModel.FK_Motorista_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="redbusdbModel.FK_Viagem_Motorista" ManuallyRouted="false" />
+        <AssociationConnector Association="redbusdbModel.FK_Responsavel_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="redbusdbModel.FK_Viagem_Filho_Viagem" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

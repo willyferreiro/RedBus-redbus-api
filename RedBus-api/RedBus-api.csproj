@@ -209,15 +209,43 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GlobalSuppressions.cs" />
-    <Compile Include="Models\Filho.cs" />
-    <Compile Include="Models\Mensagem.cs" />
-    <Compile Include="Models\Motorista.cs" />
-    <Compile Include="Models\redbusdb.cs" />
-    <Compile Include="Models\Responsavel.cs" />
+    <Compile Include="Models\Filho.cs">
+      <DependentUpon>redbusdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Mensagem.cs">
+      <DependentUpon>redbusdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Motorista.cs">
+      <DependentUpon>redbusdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\redbusdb.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>redbusdb.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\redbusdb.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>redbusdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\redbusdb.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>redbusdb.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Responsavel.cs">
+      <DependentUpon>redbusdb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\StatusViagem.cs" />
-    <Compile Include="Models\Usuario.cs" />
-    <Compile Include="Models\Viagem.cs" />
-    <Compile Include="Models\Viagem_Filho.cs" />
+    <Compile Include="Models\Usuario.cs">
+      <DependentUpon>redbusdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Viagem.cs">
+      <DependentUpon>redbusdb.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Viagem_Filho.cs">
+      <DependentUpon>redbusdb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -227,6 +255,16 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Models\redbusdb.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>redbusdb.edmx</DependentUpon>
+      <LastGenOutput>redbusdb.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\redbusdb.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>redbusdb.edmx</DependentUpon>
+      <LastGenOutput>redbusdb.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\HelpPage\Views\Web.config" />
@@ -250,6 +288,13 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EntityDeploy Include="Models\redbusdb.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>redbusdb.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\redbusdb.edmx.diagram">
+      <DependentUpon>redbusdb.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -294,6 +339,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
