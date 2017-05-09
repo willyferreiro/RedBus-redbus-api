@@ -17,6 +17,7 @@ namespace RedBus_api.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Motorista()
         {
+            this.adimplente = false;
             this.Filho = new HashSet<Filho>();
             this.Viagem = new HashSet<Viagem>();
         }

@@ -12,38 +12,44 @@ using RedBus_api.Models;
 
 namespace RedBus_api.Controllers
 {
-    public class ViagemController : ApiController
+    public class MotoristaController : ApiController
     {
         private redbusdb db = new redbusdb();
-       
-        // GET: api/Viagem/5
-        [ResponseType(typeof(Viagem))]
-        public IHttpActionResult GetViagem(long id)
+
+        // GET: api/Motoristas
+        public IQueryable<Motorista> GetMotorista()
         {
-            Viagem viagem = db.Viagem.Find(id);
-            if (viagem == null)
+            return db.Motorista;
+        }
+
+        // GET: api/Motoristas/5
+        [ResponseType(typeof(Motorista))]
+        public IHttpActionResult GetMotorista(long id)
+        {
+            Motorista motorista = db.Motorista.Find(id);
+            if (motorista == null)
             {
                 return NotFound();
             }
 
-            return Ok(viagem);
+            return Ok(motorista);
         }
 
-        // PUT: api/Viagem/5
+        // PUT: api/Motoristas/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutViagem(long id, Viagem viagem)
+        public IHttpActionResult PutMotorista(long id, Motorista motorista)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != viagem.idViagem)
+            if (id != motorista.idUsuario)
             {
                 return BadRequest();
             }
 
-            db.Entry(viagem).State = EntityState.Modified;
+            db.Entry(motorista).State = EntityState.Modified;
 
             try
             {
@@ -51,7 +57,7 @@ namespace RedBus_api.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ViagemExists(id))
+                if (!MotoristaExists(id))
                 {
                     return NotFound();
                 }
@@ -64,18 +70,16 @@ namespace RedBus_api.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Viagem
-        [ResponseType(typeof(Viagem))]
-        public IHttpActionResult PostViagem(Viagem viagem)
+        // POST: api/Motoristas
+        [ResponseType(typeof(Motorista))]
+        public IHttpActionResult PostMotorista(Motorista motorista)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-            
-
-            db.Viagem.Add(viagem);
+            db.Motorista.Add(motorista);
 
             try
             {
@@ -83,7 +87,7 @@ namespace RedBus_api.Controllers
             }
             catch (DbUpdateException)
             {
-                if (ViagemExists(viagem.idViagem))
+                if (MotoristaExists(motorista.idUsuario))
                 {
                     return Conflict();
                 }
@@ -93,23 +97,23 @@ namespace RedBus_api.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = viagem.idViagem }, viagem);
+            return CreatedAtRoute("DefaultApi", new { id = motorista.idUsuario }, motorista);
         }
 
-        // DELETE: api/Viagem/5
-        [ResponseType(typeof(Viagem))]
-        public IHttpActionResult DeleteViagem(long id)
+        // DELETE: api/Motoristas/5
+        [ResponseType(typeof(Motorista))]
+        public IHttpActionResult DeleteMotorista(long id)
         {
-            Viagem viagem = db.Viagem.Find(id);
-            if (viagem == null)
+            Motorista motorista = db.Motorista.Find(id);
+            if (motorista == null)
             {
                 return NotFound();
             }
 
-            db.Viagem.Remove(viagem);
+            db.Motorista.Remove(motorista);
             db.SaveChanges();
 
-            return Ok(viagem);
+            return Ok(motorista);
         }
 
         protected override void Dispose(bool disposing)
@@ -121,9 +125,9 @@ namespace RedBus_api.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ViagemExists(long id)
+        private bool MotoristaExists(long id)
         {
-            return db.Viagem.Count(e => e.idViagem == id) > 0;
+            return db.Motorista.Count(e => e.idUsuario == id) > 0;
         }
     }
 }

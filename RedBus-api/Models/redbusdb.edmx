@@ -85,7 +85,7 @@
           <Property Name="dataEmbarque" Type="datetime" />
           <Property Name="dataDesembarque" Type="datetime" />
           <Property Name="posicaoEmbarque_latitude" Type="float" />
-          <Property Name="posicaoEmbarque_longitude" Type="float" />
+          <Property Name="posicaoEmbarque_longitude" Type="float" StoreGeneratedPattern="None" />
           <Property Name="posicaoDesembarque_latitude" Type="float" />
           <Property Name="posicaoDesembarque_longitude" Type="float" />
         </EntityType>
@@ -255,14 +255,14 @@
           <Property Name="idResponsavel" Type="Int64" Nullable="false" />
           <Property Name="idMotorista" Type="Int64" Nullable="false" />
           <Property Name="nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="emViagem" Type="Boolean" />
-          <Property Name="embarcado" Type="Boolean" />
-          <Property Name="posicao_latitudeCasa" Type="Double" />
-          <Property Name="posicao_longitutdeCasa" Type="Double" />
-          <Property Name="posicao_latitudeEscola" Type="Double" />
-          <Property Name="posicao_longitutdeEscola" Type="Double" />
-          <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="fotoCompleta" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="emViagem" Type="Boolean" DefaultValue="false" />
+          <Property Name="embarcado" Type="Boolean" Nullable="true" DefaultValue="false" />
+          <Property Name="posicao_latitudeCasa" Type="Double" Nullable="true" />
+          <Property Name="posicao_longitutdeCasa" Type="Double" Nullable="true" />
+          <Property Name="posicao_latitudeEscola" Type="Double" Nullable="true" />
+          <Property Name="posicao_longitutdeEscola" Type="Double" Nullable="true" />
+          <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="true" />
+          <Property Name="fotoCompleta" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="true" />
           <NavigationProperty Name="Motorista" Relationship="Self.FK_Filho_Motorista" FromRole="Filho" ToRole="Motorista" />
           <NavigationProperty Name="Responsavel" Relationship="Self.FK_Filho_Responsavel" FromRole="Filho" ToRole="Responsavel" />
           <NavigationProperty Name="Viagem_Filho" Relationship="Self.FK_Viagem_Filho_Filho" FromRole="Filho" ToRole="Viagem_Filho" />
@@ -287,10 +287,10 @@
           </Key>
           <Property Name="idUsuario" Type="Int64" Nullable="false" />
           <Property Name="emViagem" Type="Boolean" Nullable="false" />
-          <Property Name="posicao_Latitude" Type="Double" />
-          <Property Name="posicao_longitude" Type="Double" />
-          <Property Name="adimplente" Type="Boolean" Nullable="false" />
-          <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="posicao_Latitude" Type="Double" Nullable="true" />
+          <Property Name="posicao_longitude" Type="Double" Nullable="true" />
+          <Property Name="adimplente" Type="Boolean" Nullable="false" DefaultValue="false" />
+          <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="true" />
           <NavigationProperty Name="Filho" Relationship="Self.FK_Filho_Motorista" FromRole="Motorista" ToRole="Filho" />
           <NavigationProperty Name="Usuario" Relationship="Self.FK_Motorista_Usuario" FromRole="Motorista" ToRole="Usuario" />
           <NavigationProperty Name="Viagem" Relationship="Self.FK_Viagem_Motorista" FromRole="Motorista" ToRole="Viagem" />
@@ -324,11 +324,11 @@
           <Property Name="idViagem" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="idMotorista" Type="Int64" Nullable="false" />
           <Property Name="dataInicioViagem" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="dataFimViagem" Type="DateTime" Precision="3" />
+          <Property Name="dataFimViagem" Type="DateTime" Precision="3" Nullable="true" />
           <Property Name="posicaoInicio_latitude" Type="Double" Nullable="false" />
           <Property Name="posicaoInicio_longitude" Type="Double" Nullable="false" />
-          <Property Name="posicaoFim_latitude" Type="Double" />
-          <Property Name="posicaoFim_longitude" Type="Double" />
+          <Property Name="posicaoFim_latitude" Type="Double" Nullable="true" />
+          <Property Name="posicaoFim_longitude" Type="Double" Nullable="true" />
           <Property Name="statusViagem" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
           <NavigationProperty Name="Motorista" Relationship="Self.FK_Viagem_Motorista" FromRole="Viagem" ToRole="Motorista" />
           <NavigationProperty Name="Viagem_Filho" Relationship="Self.FK_Viagem_Filho_Viagem" FromRole="Viagem" ToRole="Viagem_Filho" />
@@ -340,12 +340,12 @@
           </Key>
           <Property Name="idVIagem" Type="Int64" Nullable="false" />
           <Property Name="idFilho" Type="Int64" Nullable="false" />
-          <Property Name="dataEmbarque" Type="DateTime" Precision="3" />
-          <Property Name="dataDesembarque" Type="DateTime" Precision="3" />
-          <Property Name="posicaoEmbarque_latitude" Type="Double" />
-          <Property Name="posicaoEmbarque_longitude" Type="Double" />
-          <Property Name="posicaoDesembarque_latitude" Type="Double" />
-          <Property Name="posicaoDesembarque_longitude" Type="Double" />
+          <Property Name="dataEmbarque" Type="DateTime" Precision="3" Nullable="true" />
+          <Property Name="dataDesembarque" Type="DateTime" Precision="3" Nullable="true" />
+          <Property Name="posicaoEmbarque_latitude" Type="Double" Nullable="true" />
+          <Property Name="posicaoEmbarque_longitude" Type="Double" annotation:StoreGeneratedPattern="None" Nullable="true" />
+          <Property Name="posicaoDesembarque_latitude" Type="Double" Nullable="true" />
+          <Property Name="posicaoDesembarque_longitude" Type="Double" Nullable="true" />
           <NavigationProperty Name="Filho" Relationship="Self.FK_Viagem_Filho_Filho" FromRole="Viagem_Filho" ToRole="Filho" />
           <NavigationProperty Name="Viagem" Relationship="Self.FK_Viagem_Filho_Viagem" FromRole="Viagem_Filho" ToRole="Viagem" />
         </EntityType>

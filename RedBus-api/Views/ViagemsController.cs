@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using RedBus_api.Models;
 
-namespace RedBus_api.Controllers
+namespace RedBus_api.Views
 {
     public class ViagemsController : Controller
     {
@@ -17,8 +17,31 @@ namespace RedBus_api.Controllers
         // GET: Viagems
         public ActionResult Index()
         {
-            var viagem = db.Viagem.Include(v => v.Motorista);
-            return View(viagem.ToList());
+
+            Viagem viagem = new Viagem();
+            viagem.idMotorista = 1;
+            viagem.dataInicioViagem = DateTime.Now;
+            viagem.statusViagem = (int)StatusViagem.Andamento;
+            viagem.posicaoInicio_latitude = 2;
+            viagem.posicaoInicio_longitude = 3;
+
+            Viagem_Filho viagemFilho1 = new Viagem_Filho();
+            viagemFilho1.idFilho = 1;
+
+            viagem.Viagem_Filho.Add(viagemFilho1);
+
+            redbusdb db = new redbusdb();
+
+            if (!ModelState.IsValid)
+            {
+                //eturn BadRequest(ModelState);
+            }
+
+            db.Viagem.Add(viagem);
+            db.SaveChanges();
+
+            var viagem2 = db.Viagem.Include(v => v.Motorista);
+            return View(viagem2.ToList());
         }
 
         // GET: Viagems/Details/5
