@@ -17,16 +17,17 @@ namespace RedBus_api.Controllers
         private redbusdb db = new redbusdb();
 
         // GET: api/Motoristas
-        public IQueryable<Motorista> GetMotorista()
-        {
-            return db.Motorista;
-        }
+        //public IQueryable<Motorista> GetMotorista()
+        //{
+        //    return db.Motorista;
+        //}
 
         // GET: api/Motoristas/5
         [ResponseType(typeof(Motorista))]
         public IHttpActionResult GetMotorista(long id)
         {
             Motorista motorista = db.Motorista.Find(id);
+            //.Include("Usuario");
             if (motorista == null)
             {
                 return NotFound();

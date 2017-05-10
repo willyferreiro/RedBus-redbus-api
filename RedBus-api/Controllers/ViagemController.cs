@@ -68,12 +68,22 @@ namespace RedBus_api.Controllers
         [ResponseType(typeof(Viagem))]
         public IHttpActionResult PostViagem(Viagem viagem)
         {
+            if (viagem.Motorista != null)
+                db.Entry(viagem.Motorista).State = EntityState.Modified;
+            
+            foreach (Viagem_Filho vf in viagem.Viagem_Filho)
+            {
+                db.Entry(vf).State = EntityState.Added;
+                if (vf.Filho != null)
+                    db.Entry(vf.Filho).State = EntityState.Modified;
+            }
+
+            
+            /*ToDo */
             //if (!ModelState.IsValid)
             //{
             //    return BadRequest(ModelState);
             //}
-
-            
 
             db.Viagem.Add(viagem);
 

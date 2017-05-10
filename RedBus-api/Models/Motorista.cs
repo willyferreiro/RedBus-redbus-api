@@ -24,7 +24,7 @@ namespace RedBus_api.Models
     
         public long idUsuario { get; set; }
         public bool emViagem { get; set; }
-        public Nullable<double> posicao_Latitude { get; set; }
+        public Nullable<double> posicao_latitude { get; set; }
         public Nullable<double> posicao_longitude { get; set; }
         public bool adimplente { get; set; }
         public byte[] foto { get; set; }

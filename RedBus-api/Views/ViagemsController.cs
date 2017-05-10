@@ -25,19 +25,50 @@ namespace RedBus_api.Views
             viagem.posicaoInicio_latitude = 2;
             viagem.posicaoInicio_longitude = 3;
 
+            Filho filho1 = new Filho();
+            filho1.idFilho = 1;
+            filho1.nome = "filho 1";
+            filho1.idResponsavel = 2;
+            filho1.idMotorista = 1;
+            filho1.emViagem = true;
+
+            Filho filho2 = new Filho();
+            filho2.idFilho = 2;
+            filho2.nome = "filho 2";
+            filho2.idResponsavel = 2;
+            filho2.idMotorista = 1;
+            filho2.emViagem = true;
+
             Viagem_Filho viagemFilho1 = new Viagem_Filho();
-            viagemFilho1.idFilho = 1;
+            viagemFilho1.idFilho = filho1.idFilho;
+            viagemFilho1.Filho = filho1;
+
+            Viagem_Filho viagemFilho2 = new Viagem_Filho();
+            viagemFilho2.idFilho = filho2.idFilho;
+            viagemFilho2.Filho = filho2;
 
             viagem.Viagem_Filho.Add(viagemFilho1);
+            viagem.Viagem_Filho.Add(viagemFilho2);
 
             redbusdb db = new redbusdb();
 
+            db.Entry(viagemFilho1).State = EntityState.Added;
+            db.Entry(viagemFilho2).State = EntityState.Added;
+
+            db.Entry(filho1).State = EntityState.Modified;
+            db.Entry(filho2).State = EntityState.Modified;
+
             if (!ModelState.IsValid)
             {
-                //eturn BadRequest(ModelState);
+                throw new Exception(ModelState.ToString());
             }
 
             db.Viagem.Add(viagem);
+            //db.SaveChanges();
+
+            //viagem.Viagem_Filho.Add(viagemFilho1);
+            //viagem.Viagem_Filho.Add(viagemFilho2);
+
             db.SaveChanges();
 
             var viagem2 = db.Viagem.Include(v => v.Motorista);

@@ -261,6 +261,7 @@
       <DependentUpon>redbusdb.edmx</DependentUpon>
       <LastGenOutput>redbusdb.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Models\redbusdb.edmx.sql" />
     <Content Include="Models\redbusdb.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>redbusdb.edmx</DependentUpon>
