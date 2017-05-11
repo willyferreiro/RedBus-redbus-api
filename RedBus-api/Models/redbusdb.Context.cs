@@ -18,6 +18,7 @@ namespace RedBus_api.Models
         public redbusdb()
             : base("name=redbusdb")
         {
+            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

@@ -16,29 +16,17 @@ namespace RedBus_api.Controllers
     {
         private redbusdb db = new redbusdb();
         
-        // GET: api/ViagemFilho/5
-        [ResponseType(typeof(ViagemFilho))]
-        public IHttpActionResult GetViagemFilho(long id)
-        {
-            ViagemFilho ViagemFilho = db.ViagemFilho.Find(id);
-            if (ViagemFilho == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(ViagemFilho);
-        }
-
-        // PUT: api/ViagemFilho/5
+        [HttpPut]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutViagemFilho(long id, ViagemFilho ViagemFilho)
+        [Route("api/item/{idViagem}/{idFilho}")]
+        public IHttpActionResult PutViagemFilho(long idViagem, long idFilho, ViagemFilho ViagemFilho)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != ViagemFilho.idVIagem)
+            if (idViagem != ViagemFilho.idVIagem && idFilho != ViagemFilho.idFilho)
             {
                 return BadRequest();
             }
@@ -51,7 +39,7 @@ namespace RedBus_api.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ViagemFilhoExists(id))
+                if (!ViagemFilhoExists(idViagem, idFilho))
                 {
                     return NotFound();
                 }
@@ -73,9 +61,9 @@ namespace RedBus_api.Controllers
             base.Dispose(disposing);
         }
 
-        private bool ViagemFilhoExists(long id)
+        private bool ViagemFilhoExists(long idViagem, long idFilho)
         {
-            return db.ViagemFilho.Count(e => e.idVIagem == id) > 0;
+            return db.ViagemFilho.Count(e => e.idVIagem == idViagem && e.idFilho == idFilho) > 0;
         }
     }
 }
