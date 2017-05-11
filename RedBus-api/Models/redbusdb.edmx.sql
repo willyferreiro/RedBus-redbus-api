@@ -23,8 +23,8 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_Filho_Responsavel]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Filho] DROP CONSTRAINT [FK_Filho_Responsavel];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Viagem_Filho_Filho]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Viagem_Filho] DROP CONSTRAINT [FK_Viagem_Filho_Filho];
+IF OBJECT_ID(N'[dbo].[FK_ViagemFilho_Filho]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ViagemFilho] DROP CONSTRAINT [FK_ViagemFilho_Filho];
 GO
 IF OBJECT_ID(N'[dbo].[FK_Mensagem_Usuario]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Mensagem] DROP CONSTRAINT [FK_Mensagem_Usuario];
@@ -41,8 +41,8 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_Responsavel_Usuario]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Responsavel] DROP CONSTRAINT [FK_Responsavel_Usuario];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Viagem_Filho_Viagem]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Viagem_Filho] DROP CONSTRAINT [FK_Viagem_Filho_Viagem];
+IF OBJECT_ID(N'[dbo].[FK_ViagemFilho_Viagem]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[ViagemFilho] DROP CONSTRAINT [FK_ViagemFilho_Viagem];
 GO
 
 -- --------------------------------------------------
@@ -67,8 +67,8 @@ GO
 IF OBJECT_ID(N'[dbo].[Viagem]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Viagem];
 GO
-IF OBJECT_ID(N'[dbo].[Viagem_Filho]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Viagem_Filho];
+IF OBJECT_ID(N'[dbo].[ViagemFilho]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[ViagemFilho];
 GO
 
 -- --------------------------------------------------
@@ -145,8 +145,8 @@ CREATE TABLE [dbo].[Viagem] (
 );
 GO
 
--- Creating table 'Viagem_Filho'
-CREATE TABLE [dbo].[Viagem_Filho] (
+-- Creating table 'ViagemFilho'
+CREATE TABLE [dbo].[ViagemFilho] (
     [idVIagem] bigint  NOT NULL,
     [idFilho] bigint  NOT NULL,
     [dataEmbarque] datetime  NULL,
@@ -198,9 +198,9 @@ ADD CONSTRAINT [PK_Viagem]
     PRIMARY KEY CLUSTERED ([idViagem] ASC);
 GO
 
--- Creating primary key on [idVIagem], [idFilho] in table 'Viagem_Filho'
-ALTER TABLE [dbo].[Viagem_Filho]
-ADD CONSTRAINT [PK_Viagem_Filho]
+-- Creating primary key on [idVIagem], [idFilho] in table 'ViagemFilho'
+ALTER TABLE [dbo].[ViagemFilho]
+ADD CONSTRAINT [PK_ViagemFilho]
     PRIMARY KEY CLUSTERED ([idVIagem], [idFilho] ASC);
 GO
 
@@ -238,18 +238,18 @@ ON [dbo].[Filho]
     ([idResponsavel]);
 GO
 
--- Creating foreign key on [idFilho] in table 'Viagem_Filho'
-ALTER TABLE [dbo].[Viagem_Filho]
-ADD CONSTRAINT [FK_Viagem_Filho_Filho]
+-- Creating foreign key on [idFilho] in table 'ViagemFilho'
+ALTER TABLE [dbo].[ViagemFilho]
+ADD CONSTRAINT [FK_ViagemFilho_Filho]
     FOREIGN KEY ([idFilho])
     REFERENCES [dbo].[Filho]
         ([idFilho])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_Viagem_Filho_Filho'
-CREATE INDEX [IX_FK_Viagem_Filho_Filho]
-ON [dbo].[Viagem_Filho]
+-- Creating non-clustered index for FOREIGN KEY 'FK_ViagemFilho_Filho'
+CREATE INDEX [IX_FK_ViagemFilho_Filho]
+ON [dbo].[ViagemFilho]
     ([idFilho]);
 GO
 
@@ -316,9 +316,9 @@ ADD CONSTRAINT [FK_Responsavel_Usuario]
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [idVIagem] in table 'Viagem_Filho'
-ALTER TABLE [dbo].[Viagem_Filho]
-ADD CONSTRAINT [FK_Viagem_Filho_Viagem]
+-- Creating foreign key on [idVIagem] in table 'ViagemFilho'
+ALTER TABLE [dbo].[ViagemFilho]
+ADD CONSTRAINT [FK_ViagemFilho_Viagem]
     FOREIGN KEY ([idVIagem])
     REFERENCES [dbo].[Viagem]
         ([idViagem])

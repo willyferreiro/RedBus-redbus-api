@@ -12,7 +12,7 @@ namespace RedBus_api.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Viagem_Filho
+    public partial class ViagemFilho
     {
         public long idVIagem { get; set; }
         public long idFilho { get; set; }

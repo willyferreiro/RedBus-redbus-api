@@ -19,7 +19,7 @@ namespace RedBus_api.Models
         {
             this.emViagem = false;
             this.embarcado = false;
-            this.Viagem_Filho = new HashSet<Viagem_Filho>();
+            this.ViagemFilho = new HashSet<ViagemFilho>();
         }
     
         public long idFilho { get; set; }
@@ -38,6 +38,6 @@ namespace RedBus_api.Models
         public virtual Motorista Motorista { get; set; }
         public virtual Responsavel Responsavel { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Viagem_Filho> Viagem_Filho { get; set; }
+        public virtual ICollection<ViagemFilho> ViagemFilho { get; set; }
     }
 }

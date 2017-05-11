@@ -18,7 +18,6 @@ namespace RedBus_api.Models
         public redbusdb()
             : base("name=redbusdb")
         {
-            this.Configuration.LazyLoadingEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -32,6 +31,6 @@ namespace RedBus_api.Models
         public virtual DbSet<Responsavel> Responsavel { get; set; }
         public virtual DbSet<Usuario> Usuario { get; set; }
         public virtual DbSet<Viagem> Viagem { get; set; }
-        public virtual DbSet<Viagem_Filho> Viagem_Filho { get; set; }
+        public virtual DbSet<ViagemFilho> ViagemFilho { get; set; }
     }
 }

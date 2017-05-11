@@ -71,14 +71,14 @@ namespace RedBus_api.Controllers
             if (viagem.Motorista != null)
                 db.Entry(viagem.Motorista).State = EntityState.Modified;
             
-            foreach (Viagem_Filho vf in viagem.Viagem_Filho)
+            foreach (ViagemFilho vf in viagem.ViagemFilho)
             {
                 db.Entry(vf).State = EntityState.Added;
                 if (vf.Filho != null)
                     db.Entry(vf.Filho).State = EntityState.Modified;
             }
 
-            
+
             /*ToDo */
             //if (!ModelState.IsValid)
             //{

@@ -26,7 +26,10 @@ namespace RedBus_api.Controllers
         [ResponseType(typeof(Motorista))]
         public IHttpActionResult GetMotorista(long id)
         {
-            Motorista motorista = db.Motorista.Find(id);
+            Motorista motorista = db.Motorista
+              .Include(e => e.Usuario)
+              .SingleOrDefault(x => x.idUsuario == id);
+
             //.Include("Usuario");
             if (motorista == null)
             {

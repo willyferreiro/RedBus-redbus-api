@@ -17,7 +17,7 @@ namespace RedBus_api.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Viagem()
         {
-            this.Viagem_Filho = new HashSet<Viagem_Filho>();
+            this.ViagemFilho = new HashSet<ViagemFilho>();
         }
     
         public long idViagem { get; set; }
@@ -32,6 +32,6 @@ namespace RedBus_api.Models
     
         public virtual Motorista Motorista { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Viagem_Filho> Viagem_Filho { get; set; }
+        public virtual ICollection<ViagemFilho> ViagemFilho { get; set; }
     }
 }

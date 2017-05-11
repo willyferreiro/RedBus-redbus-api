@@ -12,7 +12,7 @@
     <EntitySet Name="Responsavel" EntityType="redbusdbModel.Store.Responsavel" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Usuario" EntityType="redbusdbModel.Store.Usuario" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Viagem" EntityType="redbusdbModel.Store.Viagem" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Viagem_Filho" EntityType="redbusdbModel.Store.Viagem_Filho" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ViagemFilho" EntityType="redbusdbModel.Store.ViagemFilho" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="FK_Filho_Motorista" Association="redbusdbModel.Store.FK_Filho_Motorista">
       <End Role="Motorista" EntitySet="Motorista" />
       <End Role="Filho" EntitySet="Filho" />
@@ -21,9 +21,9 @@
       <End Role="Responsavel" EntitySet="Responsavel" />
       <End Role="Filho" EntitySet="Filho" />
     </AssociationSet>
-    <AssociationSet Name="FK_Viagem_Filho_Filho" Association="redbusdbModel.Store.FK_Viagem_Filho_Filho">
+    <AssociationSet Name="FK_ViagemFilho_Filho" Association="redbusdbModel.Store.FK_ViagemFilho_Filho">
       <End Role="Filho" EntitySet="Filho" />
-      <End Role="Viagem_Filho" EntitySet="Viagem_Filho" />
+      <End Role="ViagemFilho" EntitySet="ViagemFilho" />
     </AssociationSet>
     <AssociationSet Name="FK_Mensagem_Usuario" Association="redbusdbModel.Store.FK_Mensagem_Usuario">
       <End Role="Usuario" EntitySet="Usuario" />
@@ -45,9 +45,9 @@
       <End Role="Usuario" EntitySet="Usuario" />
       <End Role="Responsavel" EntitySet="Responsavel" />
     </AssociationSet>
-    <AssociationSet Name="FK_Viagem_Filho_Viagem" Association="redbusdbModel.Store.FK_Viagem_Filho_Viagem">
+    <AssociationSet Name="FK_ViagemFilho_Viagem" Association="redbusdbModel.Store.FK_ViagemFilho_Viagem">
       <End Role="Viagem" EntitySet="Viagem" />
-      <End Role="Viagem_Filho" EntitySet="Viagem_Filho" />
+      <End Role="ViagemFilho" EntitySet="ViagemFilho" />
     </AssociationSet>
   </EntityContainer>
   <EntityType Name="Filho">
@@ -120,7 +120,7 @@
     <Property Name="posicaoFim_longitude" Type="float" Nullable="true" />
     <Property Name="statusViagem" Type="decimal" Nullable="false" Precision="1" Scale="0" />
   </EntityType>
-  <EntityType Name="Viagem_Filho">
+  <EntityType Name="ViagemFilho">
     <Key>
       <PropertyRef Name="idVIagem" />
       <PropertyRef Name="idFilho" />
@@ -158,14 +158,14 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Viagem_Filho_Filho">
+  <Association Name="FK_ViagemFilho_Filho">
     <End Role="Filho" Type="redbusdbModel.Store.Filho" Multiplicity="1" />
-    <End Role="Viagem_Filho" Type="redbusdbModel.Store.Viagem_Filho" Multiplicity="*" />
+    <End Role="ViagemFilho" Type="redbusdbModel.Store.ViagemFilho" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Filho">
         <PropertyRef Name="idFilho" />
       </Principal>
-      <Dependent Role="Viagem_Filho">
+      <Dependent Role="ViagemFilho">
         <PropertyRef Name="idFilho" />
       </Dependent>
     </ReferentialConstraint>
@@ -230,14 +230,14 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Viagem_Filho_Viagem">
+  <Association Name="FK_ViagemFilho_Viagem">
     <End Role="Viagem" Type="redbusdbModel.Store.Viagem" Multiplicity="1" />
-    <End Role="Viagem_Filho" Type="redbusdbModel.Store.Viagem_Filho" Multiplicity="*" />
+    <End Role="ViagemFilho" Type="redbusdbModel.Store.ViagemFilho" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Viagem">
         <PropertyRef Name="idViagem" />
       </Principal>
-      <Dependent Role="Viagem_Filho">
+      <Dependent Role="ViagemFilho">
         <PropertyRef Name="idVIagem" />
       </Dependent>
     </ReferentialConstraint>
@@ -264,7 +264,7 @@
           <Property Name="fotoCompleta" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="true" />
           <NavigationProperty Name="Motorista" Relationship="Self.FK_Filho_Motorista" FromRole="Filho" ToRole="Motorista" />
           <NavigationProperty Name="Responsavel" Relationship="Self.FK_Filho_Responsavel" FromRole="Filho" ToRole="Responsavel" />
-          <NavigationProperty Name="Viagem_Filho" Relationship="Self.FK_Viagem_Filho_Filho" FromRole="Filho" ToRole="Viagem_Filho" />
+          <NavigationProperty Name="ViagemFilho" Relationship="Self.FK_ViagemFilho_Filho" FromRole="Filho" ToRole="ViagemFilho" />
         </EntityType>
         <EntityType Name="Mensagem">
           <Key>
@@ -330,9 +330,9 @@
           <Property Name="posicaoFim_longitude" Type="Double" Nullable="true" />
           <Property Name="statusViagem" Type="Decimal" Precision="1" Scale="0" Nullable="false" />
           <NavigationProperty Name="Motorista" Relationship="Self.FK_Viagem_Motorista" FromRole="Viagem" ToRole="Motorista" />
-          <NavigationProperty Name="Viagem_Filho" Relationship="Self.FK_Viagem_Filho_Viagem" FromRole="Viagem" ToRole="Viagem_Filho" />
+          <NavigationProperty Name="ViagemFilho" Relationship="Self.FK_ViagemFilho_Viagem" FromRole="Viagem" ToRole="ViagemFilho" />
         </EntityType>
-        <EntityType Name="Viagem_Filho">
+        <EntityType Name="ViagemFilho">
           <Key>
             <PropertyRef Name="idVIagem" />
             <PropertyRef Name="idFilho" />
@@ -345,8 +345,8 @@
           <Property Name="posicaoEmbarque_longitude" Type="Double" annotation:StoreGeneratedPattern="None" Nullable="true" />
           <Property Name="posicaoDesembarque_latitude" Type="Double" Nullable="true" />
           <Property Name="posicaoDesembarque_longitude" Type="Double" Nullable="true" />
-          <NavigationProperty Name="Filho" Relationship="Self.FK_Viagem_Filho_Filho" FromRole="Viagem_Filho" ToRole="Filho" />
-          <NavigationProperty Name="Viagem" Relationship="Self.FK_Viagem_Filho_Viagem" FromRole="Viagem_Filho" ToRole="Viagem" />
+          <NavigationProperty Name="Filho" Relationship="Self.FK_ViagemFilho_Filho" FromRole="ViagemFilho" ToRole="Filho" />
+          <NavigationProperty Name="Viagem" Relationship="Self.FK_ViagemFilho_Viagem" FromRole="ViagemFilho" ToRole="Viagem" />
         </EntityType>
         <Association Name="FK_Filho_Motorista">
           <End Role="Motorista" Type="Self.Motorista" Multiplicity="1" />
@@ -372,14 +372,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Viagem_Filho_Filho">
+        <Association Name="FK_ViagemFilho_Filho">
           <End Role="Filho" Type="Self.Filho" Multiplicity="1" />
-          <End Role="Viagem_Filho" Type="Self.Viagem_Filho" Multiplicity="*" />
+          <End Role="ViagemFilho" Type="redbusdbModel.ViagemFilho" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Filho">
               <PropertyRef Name="idFilho" />
             </Principal>
-            <Dependent Role="Viagem_Filho">
+            <Dependent Role="ViagemFilho">
               <PropertyRef Name="idFilho" />
             </Dependent>
           </ReferentialConstraint>
@@ -444,14 +444,14 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Viagem_Filho_Viagem">
+        <Association Name="FK_ViagemFilho_Viagem">
           <End Role="Viagem" Type="Self.Viagem" Multiplicity="1" />
-          <End Role="Viagem_Filho" Type="Self.Viagem_Filho" Multiplicity="*" />
+          <End Role="ViagemFilho" Type="redbusdbModel.ViagemFilho" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Viagem">
               <PropertyRef Name="idViagem" />
             </Principal>
-            <Dependent Role="Viagem_Filho">
+            <Dependent Role="ViagemFilho">
               <PropertyRef Name="idVIagem" />
             </Dependent>
           </ReferentialConstraint>
@@ -463,7 +463,7 @@
           <EntitySet Name="Responsavel" EntityType="Self.Responsavel" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" />
           <EntitySet Name="Viagem" EntityType="Self.Viagem" />
-          <EntitySet Name="Viagem_Filho" EntityType="Self.Viagem_Filho" />
+          <EntitySet Name="ViagemFilho" EntityType="redbusdbModel.ViagemFilho" />
           <AssociationSet Name="FK_Filho_Motorista" Association="Self.FK_Filho_Motorista">
             <End Role="Motorista" EntitySet="Motorista" />
             <End Role="Filho" EntitySet="Filho" />
@@ -472,9 +472,9 @@
             <End Role="Responsavel" EntitySet="Responsavel" />
             <End Role="Filho" EntitySet="Filho" />
           </AssociationSet>
-          <AssociationSet Name="FK_Viagem_Filho_Filho" Association="Self.FK_Viagem_Filho_Filho">
+          <AssociationSet Name="FK_ViagemFilho_Filho" Association="Self.FK_ViagemFilho_Filho">
             <End Role="Filho" EntitySet="Filho" />
-            <End Role="Viagem_Filho" EntitySet="Viagem_Filho" />
+            <End Role="ViagemFilho" EntitySet="ViagemFilho" />
           </AssociationSet>
           <AssociationSet Name="FK_Mensagem_Usuario" Association="Self.FK_Mensagem_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
@@ -496,9 +496,9 @@
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="Responsavel" EntitySet="Responsavel" />
           </AssociationSet>
-          <AssociationSet Name="FK_Viagem_Filho_Viagem" Association="Self.FK_Viagem_Filho_Viagem">
+          <AssociationSet Name="FK_ViagemFilho_Viagem" Association="Self.FK_ViagemFilho_Viagem">
             <End Role="Viagem" EntitySet="Viagem" />
-            <End Role="Viagem_Filho" EntitySet="Viagem_Filho" />
+            <End Role="ViagemFilho" EntitySet="ViagemFilho" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -583,9 +583,9 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Viagem_Filho">
-      <EntityTypeMapping TypeName="IsTypeOf(redbusdbModel.Viagem_Filho)">
-        <MappingFragment StoreEntitySet="Viagem_Filho">
+    <EntitySetMapping Name="ViagemFilho">
+      <EntityTypeMapping TypeName="IsTypeOf(redbusdbModel.ViagemFilho)">
+        <MappingFragment StoreEntitySet="ViagemFilho">
           <ScalarProperty Name="idVIagem" ColumnName="idVIagem" />
           <ScalarProperty Name="idFilho" ColumnName="idFilho" />
           <ScalarProperty Name="dataEmbarque" ColumnName="dataEmbarque" />

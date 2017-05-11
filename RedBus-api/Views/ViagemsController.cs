@@ -39,16 +39,16 @@ namespace RedBus_api.Views
             filho2.idMotorista = 1;
             filho2.emViagem = true;
 
-            Viagem_Filho viagemFilho1 = new Viagem_Filho();
+            ViagemFilho viagemFilho1 = new ViagemFilho();
             viagemFilho1.idFilho = filho1.idFilho;
             viagemFilho1.Filho = filho1;
 
-            Viagem_Filho viagemFilho2 = new Viagem_Filho();
+            ViagemFilho viagemFilho2 = new ViagemFilho();
             viagemFilho2.idFilho = filho2.idFilho;
             viagemFilho2.Filho = filho2;
 
-            viagem.Viagem_Filho.Add(viagemFilho1);
-            viagem.Viagem_Filho.Add(viagemFilho2);
+            viagem.ViagemFilho.Add(viagemFilho1);
+            viagem.ViagemFilho.Add(viagemFilho2);
 
             redbusdb db = new redbusdb();
 
@@ -66,8 +66,8 @@ namespace RedBus_api.Views
             db.Viagem.Add(viagem);
             //db.SaveChanges();
 
-            //viagem.Viagem_Filho.Add(viagemFilho1);
-            //viagem.Viagem_Filho.Add(viagemFilho2);
+            //viagem.ViagemFilho.Add(viagemFilho1);
+            //viagem.ViagemFilho.Add(viagemFilho2);
 
             db.SaveChanges();
 

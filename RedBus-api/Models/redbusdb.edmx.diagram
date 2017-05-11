@@ -11,16 +11,16 @@
         <EntityTypeShape EntityType="redbusdbModel.Responsavel" Width="1.5" PointX="3" PointY="11.25" IsExpanded="true" />
         <EntityTypeShape EntityType="redbusdbModel.Usuario" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
         <EntityTypeShape EntityType="redbusdbModel.Viagem" Width="1.5" PointX="5.25" PointY="12" IsExpanded="true" />
-        <EntityTypeShape EntityType="redbusdbModel.Viagem_Filho" Width="1.5" PointX="7.5" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="redbusdbModel.ViagemFilho" Width="1.5" PointX="7.5" PointY="9.75" IsExpanded="true" />
         <AssociationConnector Association="redbusdbModel.FK_Filho_Motorista" ManuallyRouted="false" />
         <AssociationConnector Association="redbusdbModel.FK_Filho_Responsavel" ManuallyRouted="false" />
-        <AssociationConnector Association="redbusdbModel.FK_Viagem_Filho_Filho" ManuallyRouted="false" />
+        <AssociationConnector Association="redbusdbModel.FK_ViagemFilho_Filho" ManuallyRouted="false" />
         <AssociationConnector Association="redbusdbModel.FK_Mensagem_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="redbusdbModel.FK_Mensagem_Usuario1" ManuallyRouted="false" />
         <AssociationConnector Association="redbusdbModel.FK_Motorista_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="redbusdbModel.FK_Viagem_Motorista" ManuallyRouted="false" />
         <AssociationConnector Association="redbusdbModel.FK_Responsavel_Usuario" ManuallyRouted="false" />
-        <AssociationConnector Association="redbusdbModel.FK_Viagem_Filho_Viagem" ManuallyRouted="false" />
+        <AssociationConnector Association="redbusdbModel.FK_ViagemFilho_Viagem" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
