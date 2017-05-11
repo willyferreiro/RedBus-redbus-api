@@ -64,6 +64,64 @@ namespace RedBus_api.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        [HttpPost]
+        [ResponseType(typeof(Viagem))]
+        [Route("api/viagemdto")]
+        public IHttpActionResult PostViagem(InicioViagemDTO viagemDTO)
+        {
+            if (viagemDTO.idMotorista == 0)
+                return BadRequest("idMotorista não pode ser null");
+
+            if (viagemDTO.idFilhos.Count <= 0)
+                return BadRequest("No mínimo um filho deve ser informado");
+            
+            if (viagemDTO.posicaoInicio_latitude == 0 || viagemDTO.posicaoInicio_longitude == 0)
+                return BadRequest("Posição deve ser informada");
+
+            Viagem viagem = new Viagem()
+            {
+                idMotorista = viagemDTO.idMotorista,
+                dataInicioViagem = DateTime.Now,
+                posicaoInicio_latitude = viagemDTO.posicaoInicio_latitude,
+                posicaoInicio_longitude = viagemDTO.posicaoInicio_longitude,
+                statusViagem = (int) StatusViagem.Andamento
+            };
+
+            db.Entry(viagem).State = EntityState.Added;
+
+            foreach (int idFilho in viagemDTO.idFilhos)
+            {
+                ViagemFilho vf = new ViagemFilho()
+                {
+                    idFilho = idFilho,
+                    Filho = db.Filho.Find(idFilho)
+                };
+                vf.Filho.emViagem = true;
+                
+                viagem.ViagemFilho.Add(vf);
+                db.Entry(vf).State = EntityState.Added;
+                db.Entry(vf.Filho).State = EntityState.Modified;
+            }
+
+            viagem.Motorista = db.Motorista.Find(viagemDTO.idMotorista);
+            viagem.Motorista.emViagem = true;
+            viagem.Motorista.posicao_latitude = viagemDTO.posicaoInicio_latitude;
+            viagem.Motorista.posicao_longitude = viagemDTO.posicaoInicio_longitude;
+            
+            db.Entry(viagem.Motorista).State = EntityState.Modified;
+            
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            db.Viagem.Add(viagem);
+            
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { controller = "viagem", id = viagem.idViagem }, viagem);
+        }
+
         // POST: api/Viagem
         [ResponseType(typeof(Viagem))]
         public IHttpActionResult PostViagem(Viagem viagem)

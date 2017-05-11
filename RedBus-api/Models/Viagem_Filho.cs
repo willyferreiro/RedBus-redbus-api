@@ -15,10 +15,10 @@ namespace RedBus_api.Models
 using System;
     using System.Collections.Generic;
     
-public partial class ViagemFilho
+public partial class Viagem_Filho
 {
 
-    public long idViagem { get; set; }
+    public long idVIagem { get; set; }
 
     public long idFilho { get; set; }
 

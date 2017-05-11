@@ -26,7 +26,7 @@ namespace RedBus_api.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (idViagem != ViagemFilho.idVIagem && idFilho != ViagemFilho.idFilho)
+            if (idViagem != ViagemFilho.idViagem && idFilho != ViagemFilho.idFilho)
             {
                 return BadRequest();
             }
@@ -63,7 +63,7 @@ namespace RedBus_api.Controllers
 
         private bool ViagemFilhoExists(long idViagem, long idFilho)
         {
-            return db.ViagemFilho.Count(e => e.idVIagem == idViagem && e.idFilho == idFilho) > 0;
+            return db.ViagemFilho.Count(e => e.idViagem == idViagem && e.idFilho == idFilho) > 0;
         }
     }
 }

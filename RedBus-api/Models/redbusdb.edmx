@@ -122,10 +122,10 @@
   </EntityType>
   <EntityType Name="ViagemFilho">
     <Key>
-      <PropertyRef Name="idVIagem" />
+      <PropertyRef Name="idViagem" />
       <PropertyRef Name="idFilho" />
     </Key>
-    <Property Name="idVIagem" Type="bigint" Nullable="false" />
+    <Property Name="idViagem" Type="bigint" Nullable="false" />
     <Property Name="idFilho" Type="bigint" Nullable="false" />
     <Property Name="dataEmbarque" Type="datetime" Nullable="true" />
     <Property Name="dataDesembarque" Type="datetime" Nullable="true" />
@@ -238,7 +238,7 @@
         <PropertyRef Name="idViagem" />
       </Principal>
       <Dependent Role="ViagemFilho">
-        <PropertyRef Name="idVIagem" />
+        <PropertyRef Name="idViagem" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -334,10 +334,10 @@
         </EntityType>
         <EntityType Name="ViagemFilho">
           <Key>
-            <PropertyRef Name="idVIagem" />
+            <PropertyRef Name="idViagem" />
             <PropertyRef Name="idFilho" />
           </Key>
-          <Property Name="idVIagem" Type="Int64" Nullable="false" />
+          <Property Name="idViagem" Type="Int64" Nullable="false" />
           <Property Name="idFilho" Type="Int64" Nullable="false" />
           <Property Name="dataEmbarque" Type="DateTime" Precision="3" Nullable="true" />
           <Property Name="dataDesembarque" Type="DateTime" Precision="3" Nullable="true" />
@@ -452,7 +452,7 @@
               <PropertyRef Name="idViagem" />
             </Principal>
             <Dependent Role="ViagemFilho">
-              <PropertyRef Name="idVIagem" />
+              <PropertyRef Name="idViagem" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -586,7 +586,7 @@
     <EntitySetMapping Name="ViagemFilho">
       <EntityTypeMapping TypeName="IsTypeOf(redbusdbModel.ViagemFilho)">
         <MappingFragment StoreEntitySet="ViagemFilho">
-          <ScalarProperty Name="idVIagem" ColumnName="idVIagem" />
+          <ScalarProperty Name="idViagem" ColumnName="idViagem" />
           <ScalarProperty Name="idFilho" ColumnName="idFilho" />
           <ScalarProperty Name="dataEmbarque" ColumnName="dataEmbarque" />
           <ScalarProperty Name="dataDesembarque" ColumnName="dataDesembarque" />

@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 05/09/2017 20:55:51
+-- Date Created: 05/11/2017 19:28:22
 -- Generated from EDMX file: E:\Projetos\AppsFactory\RedBus\RedBus-api\RedBus-api\Models\redbusdb.edmx
 -- --------------------------------------------------
 
@@ -147,7 +147,7 @@ GO
 
 -- Creating table 'ViagemFilho'
 CREATE TABLE [dbo].[ViagemFilho] (
-    [idVIagem] bigint  NOT NULL,
+    [idViagem] bigint  NOT NULL,
     [idFilho] bigint  NOT NULL,
     [dataEmbarque] datetime  NULL,
     [dataDesembarque] datetime  NULL,
@@ -198,10 +198,10 @@ ADD CONSTRAINT [PK_Viagem]
     PRIMARY KEY CLUSTERED ([idViagem] ASC);
 GO
 
--- Creating primary key on [idVIagem], [idFilho] in table 'ViagemFilho'
+-- Creating primary key on [idViagem], [idFilho] in table 'ViagemFilho'
 ALTER TABLE [dbo].[ViagemFilho]
 ADD CONSTRAINT [PK_ViagemFilho]
-    PRIMARY KEY CLUSTERED ([idVIagem], [idFilho] ASC);
+    PRIMARY KEY CLUSTERED ([idViagem], [idFilho] ASC);
 GO
 
 -- --------------------------------------------------
@@ -316,10 +316,10 @@ ADD CONSTRAINT [FK_Responsavel_Usuario]
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 GO
 
--- Creating foreign key on [idVIagem] in table 'ViagemFilho'
+-- Creating foreign key on [idViagem] in table 'ViagemFilho'
 ALTER TABLE [dbo].[ViagemFilho]
 ADD CONSTRAINT [FK_ViagemFilho_Viagem]
-    FOREIGN KEY ([idVIagem])
+    FOREIGN KEY ([idViagem])
     REFERENCES [dbo].[Viagem]
         ([idViagem])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
