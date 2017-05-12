@@ -18,7 +18,7 @@ namespace RedBus_api.Controllers
         
         [HttpPut]
         [ResponseType(typeof(void))]
-        [Route("api/item/{idViagem}/{idFilho}")]
+        [Route("api/viagemfilho/{idViagem}/{idFilho}")]
         public IHttpActionResult PutViagemFilho(long idViagem, long idFilho, ViagemFilho ViagemFilho)
         {
             if (!ModelState.IsValid)

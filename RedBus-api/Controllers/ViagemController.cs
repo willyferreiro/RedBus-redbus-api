@@ -66,7 +66,7 @@ namespace RedBus_api.Controllers
 
         [HttpPost]
         [ResponseType(typeof(Viagem))]
-        [Route("api/viagemdto")]
+        //[Route("api/viagemdto")]
         public IHttpActionResult PostViagem(InicioViagemDTO viagemDTO)
         {
             if (viagemDTO.idMotorista == 0)
@@ -123,46 +123,46 @@ namespace RedBus_api.Controllers
         }
 
         // POST: api/Viagem
-        [ResponseType(typeof(Viagem))]
-        public IHttpActionResult PostViagem(Viagem viagem)
-        {
-            if (viagem.Motorista != null)
-                db.Entry(viagem.Motorista).State = EntityState.Modified;
+        //[ResponseType(typeof(Viagem))]
+        //public IHttpActionResult PostViagem(Viagem viagem)
+        //{
+        //    if (viagem.Motorista != null)
+        //        db.Entry(viagem.Motorista).State = EntityState.Modified;
             
-            foreach (ViagemFilho vf in viagem.ViagemFilho)
-            {
-                db.Entry(vf).State = EntityState.Added;
-                if (vf.Filho != null)
-                    db.Entry(vf.Filho).State = EntityState.Modified;
-            }
+        //    foreach (ViagemFilho vf in viagem.ViagemFilho)
+        //    {
+        //        db.Entry(vf).State = EntityState.Added;
+        //        if (vf.Filho != null)
+        //            db.Entry(vf.Filho).State = EntityState.Modified;
+        //    }
 
 
-            /*ToDo */
-            //if (!ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
+        //    /*ToDo */
+        //    //if (!ModelState.IsValid)
+        //    //{
+        //    //    return BadRequest(ModelState);
+        //    //}
 
-            db.Viagem.Add(viagem);
+        //    db.Viagem.Add(viagem);
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (ViagemExists(viagem.idViagem))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+        //    try
+        //    {
+        //        db.SaveChanges();
+        //    }
+        //    catch (DbUpdateException)
+        //    {
+        //        if (ViagemExists(viagem.idViagem))
+        //        {
+        //            return Conflict();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            return CreatedAtRoute("DefaultApi", new { id = viagem.idViagem }, viagem);
-        }
+        //    return CreatedAtRoute("DefaultApi", new { id = viagem.idViagem }, viagem);
+        //}
 
         // DELETE: api/Viagem/5
         [ResponseType(typeof(Viagem))]

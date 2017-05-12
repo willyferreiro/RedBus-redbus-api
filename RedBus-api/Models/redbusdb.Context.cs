@@ -23,7 +23,9 @@ public partial class redbusdb : DbContext
     public redbusdb()
         : base("name=redbusdb")
     {
-        Configuration.LazyLoadingEnabled = false;
+
+        this.Configuration.LazyLoadingEnabled = false;
+
     }
 
     protected override void OnModelCreating(DbModelBuilder modelBuilder)

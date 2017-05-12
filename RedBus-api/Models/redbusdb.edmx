@@ -456,7 +456,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="redbusdb" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="redbusdb" annotation:LazyLoadingEnabled="false">
           <EntitySet Name="Filho" EntityType="Self.Filho" />
           <EntitySet Name="Mensagem" EntityType="Self.Mensagem" />
           <EntitySet Name="Motorista" EntityType="Self.Motorista" />
