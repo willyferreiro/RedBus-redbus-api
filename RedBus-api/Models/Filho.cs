@@ -7,64 +7,39 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
-
 namespace RedBus_api.Models
 {
-
-using System;
+    using System;
     using System.Collections.Generic;
-    
-public partial class Filho
-{
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public Filho()
+    public partial class Filho
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Filho()
+        {
+            this.emViagem = false;
+            this.embarcado = false;
+            this.ViagemFilho = new HashSet<ViagemFilho>();
+        }
 
-        this.emViagem = false;
+        public long idFilho { get; set; }
+        public long idResponsavel { get; set; }
+        public long idMotorista { get; set; }
+        public string nome { get; set; }
+        public Nullable<bool> emViagem { get; set; }
+        public Nullable<bool> embarcado { get; set; }
+        public Nullable<double> posicao_latitudeCasa { get; set; }
+        public Nullable<double> posicao_longitutdeCasa { get; set; }
+        public Nullable<double> posicao_latitudeEscola { get; set; }
+        public Nullable<double> posicao_longitutdeEscola { get; set; }
+        public byte[] foto { get; set; }
+        public byte[] fotoCompleta { get; set; }
 
-        this.embarcado = false;
-
-        this.ViagemFilho = new HashSet<ViagemFilho>();
+        public virtual Motorista Motorista { get; set; }
+        public virtual Responsavel Responsavel { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ViagemFilho> ViagemFilho { get; set; }
 
     }
-
-
-    public long idFilho { get; set; }
-
-    public long idResponsavel { get; set; }
-
-    public long idMotorista { get; set; }
-
-    public string nome { get; set; }
-
-    public Nullable<bool> emViagem { get; set; }
-
-    public Nullable<bool> embarcado { get; set; }
-
-    public Nullable<double> posicao_latitudeCasa { get; set; }
-
-    public Nullable<double> posicao_longitutdeCasa { get; set; }
-
-    public Nullable<double> posicao_latitudeEscola { get; set; }
-
-    public Nullable<double> posicao_longitutdeEscola { get; set; }
-
-    public byte[] foto { get; set; }
-
-    public byte[] fotoCompleta { get; set; }
-
-
-
-    public virtual Motorista Motorista { get; set; }
-
-    public virtual Responsavel Responsavel { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<ViagemFilho> ViagemFilho { get; set; }
-
-}
 
 }
