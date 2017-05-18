@@ -29,47 +29,43 @@ namespace RedBus_api.Controllers
             return Ok(viagem);
         }
 
+        [HttpPut]
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutViagem(long id, FimViagemDTO fimViagemDTO)
+        [Route("api/viagem/finalizaviagem/{idViagem}")]
+        public IHttpActionResult PutViagem(long idViagem, ViagemDTO viagemDTO)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
-
-            if (id != fimViagemDTO.idViagem)
-            {
+           if (idViagem != viagemDTO.idViagem)
                 return BadRequest();
-            }
-            if (fimViagemDTO.idMotorista == 0)
+            if (viagemDTO.idMotorista == 0)
                 return BadRequest("idMotorista não pode ser null");
-            
-            if (fimViagemDTO.posicaoFim_latitude == 0 || fimViagemDTO.posicaoFim_longitude == 0)
+            if (viagemDTO.posicao_latitude == 0 || viagemDTO.posicao_longitude == 0)
                 return BadRequest("Posição deve ser informada");
 
-            Viagem viagem = db.Viagem.Find(id);
+            Viagem viagem = db.Viagem.Find(idViagem);
 
-            viagem.posicaoFim_latitude = fimViagemDTO.posicaoFim_latitude;
-            viagem.posicaoFim_longitude = fimViagemDTO.posicaoFim_longitude;
+            viagem.posicaoFim_latitude = viagemDTO.posicao_latitude;
+            viagem.posicaoFim_longitude = viagemDTO.posicao_longitude;
             viagem.statusViagem = (int)StatusViagem.Concluida;
             viagem.dataFimViagem = DateTime.Now;
             db.Entry(viagem).State = EntityState.Modified;
 
-            Motorista motorista = db.Motorista.Find(fimViagemDTO.idMotorista);
+            Motorista motorista = db.Motorista.Find(viagemDTO.idMotorista);
             motorista.emViagem = false;
             db.Entry(motorista).State = EntityState.Modified;
 
-            foreach (long idFilho in fimViagemDTO.idFilhos)
+            foreach (long idFilho in viagemDTO.idFilhos)
             {
                 ViagemFilho viagemFilho = db.ViagemFilho
                     .Include(e => e.Filho)
-                    .SingleOrDefault(f => f.idViagem == fimViagemDTO.idViagem && f.idFilho == idFilho);
+                    .SingleOrDefault(f => f.idViagem == viagemDTO.idViagem && f.idFilho == idFilho);
 
                 viagemFilho.Filho.embarcado = false;
                 viagemFilho.Filho.emViagem = false;
 
-                viagemFilho.posicaoDesembarque_latitude = fimViagemDTO.posicaoFim_latitude;
-                viagemFilho.posicaoDesembarque_longitude = fimViagemDTO.posicaoFim_longitude;
+                viagemFilho.posicaoDesembarque_latitude = viagemDTO.posicao_latitude;
+                viagemFilho.posicaoDesembarque_longitude = viagemDTO.posicao_longitude;
                 viagemFilho.dataDesembarque = DateTime.Now;
 
                 db.Entry(viagemFilho).State = EntityState.Modified;
@@ -82,7 +78,7 @@ namespace RedBus_api.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ViagemExists(id))
+                if (!ViagemExists(idViagem))
                 {
                     return NotFound();
                 }
@@ -97,24 +93,26 @@ namespace RedBus_api.Controllers
 
         [HttpPost]
         [ResponseType(typeof(Viagem))]
-        //[Route("api/viagemdto")]
-        public IHttpActionResult PostViagem(InicioViagemDTO viagemDTO)
+        [Route("api/viagem/iniciaviagem")]
+        public IHttpActionResult PostViagem(ViagemDTO viagemDTO)
         {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
             if (viagemDTO.idMotorista == 0)
                 return BadRequest("idMotorista não pode ser null");
 
             if (viagemDTO.idFilhos.Count <= 0)
                 return BadRequest("No mínimo um filho deve ser informado");
-            
-            if (viagemDTO.posicaoInicio_latitude == 0 || viagemDTO.posicaoInicio_longitude == 0)
+
+            if (viagemDTO.posicao_latitude == 0 || viagemDTO.posicao_longitude == 0)
                 return BadRequest("Posição deve ser informada");
 
             Viagem viagem = new Viagem()
             {
                 idMotorista = viagemDTO.idMotorista,
                 dataInicioViagem = DateTime.Now,
-                posicaoInicio_latitude = viagemDTO.posicaoInicio_latitude,
-                posicaoInicio_longitude = viagemDTO.posicaoInicio_longitude,
+                posicaoInicio_latitude = viagemDTO.posicao_latitude,
+                posicaoInicio_longitude = viagemDTO.posicao_longitude,
                 statusViagem = (int) StatusViagem.Andamento
             };
 
@@ -136,16 +134,11 @@ namespace RedBus_api.Controllers
 
             viagem.Motorista = db.Motorista.Find(viagemDTO.idMotorista);
             viagem.Motorista.emViagem = true;
-            viagem.Motorista.posicao_latitude = viagemDTO.posicaoInicio_latitude;
-            viagem.Motorista.posicao_longitude = viagemDTO.posicaoInicio_longitude;
+            viagem.Motorista.posicao_latitude = viagemDTO.posicao_latitude;
+            viagem.Motorista.posicao_longitude = viagemDTO.posicao_longitude;
             
             db.Entry(viagem.Motorista).State = EntityState.Modified;
             
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
             db.Viagem.Add(viagem);
             
             db.SaveChanges();
