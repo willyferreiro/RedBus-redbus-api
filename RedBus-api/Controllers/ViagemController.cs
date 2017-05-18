@@ -29,21 +29,52 @@ namespace RedBus_api.Controllers
             return Ok(viagem);
         }
 
-        // PUT: api/Viagem/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutViagem(long id, Viagem viagem)
+        public IHttpActionResult PutViagem(long id, FimViagemDTO fimViagemDTO)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != viagem.idViagem)
+            if (id != fimViagemDTO.idViagem)
             {
                 return BadRequest();
             }
+            if (fimViagemDTO.idMotorista == 0)
+                return BadRequest("idMotorista não pode ser null");
+            
+            if (fimViagemDTO.posicaoFim_latitude == 0 || fimViagemDTO.posicaoFim_longitude == 0)
+                return BadRequest("Posição deve ser informada");
 
+            Viagem viagem = db.Viagem.Find(id);
+
+            viagem.posicaoFim_latitude = fimViagemDTO.posicaoFim_latitude;
+            viagem.posicaoFim_longitude = fimViagemDTO.posicaoFim_longitude;
+            viagem.statusViagem = (int)StatusViagem.Concluida;
+            viagem.dataFimViagem = DateTime.Now;
             db.Entry(viagem).State = EntityState.Modified;
+
+            Motorista motorista = db.Motorista.Find(fimViagemDTO.idMotorista);
+            motorista.emViagem = false;
+            db.Entry(motorista).State = EntityState.Modified;
+
+            foreach (long idFilho in fimViagemDTO.idFilhos)
+            {
+                ViagemFilho viagemFilho = db.ViagemFilho
+                    .Include(e => e.Filho)
+                    .SingleOrDefault(f => f.idViagem == fimViagemDTO.idViagem && f.idFilho == idFilho);
+
+                viagemFilho.Filho.embarcado = false;
+                viagemFilho.Filho.emViagem = false;
+
+                viagemFilho.posicaoDesembarque_latitude = fimViagemDTO.posicaoFim_latitude;
+                viagemFilho.posicaoDesembarque_longitude = fimViagemDTO.posicaoFim_longitude;
+                viagemFilho.dataDesembarque = DateTime.Now;
+
+                db.Entry(viagemFilho).State = EntityState.Modified;
+                db.Entry(viagemFilho.Filho).State = EntityState.Modified;
+            }
 
             try
             {

@@ -23,7 +23,7 @@ namespace RedBus_api.Controllers
         {
             ViagemFilho viagemFilho = db.ViagemFilho
               .Include(e => e.Filho)
-              .SingleOrDefault(f => f.idViagem == idViagem && f.idFilho != idFilho);
+              .SingleOrDefault(f => f.idViagem == idViagem && f.idFilho == idFilho);
 
             if (viagemFilho == null)
             {
@@ -86,9 +86,9 @@ namespace RedBus_api.Controllers
 
             ViagemFilho viagemFilho = db.ViagemFilho
                 .Include(e => e.Filho)
-                .SingleOrDefault(f => f.idViagem == passageiroDTO.idViagem && f.idFilho != passageiroDTO.idFilho);
+                .SingleOrDefault(f => f.idViagem == passageiroDTO.idViagem && f.idFilho == passageiroDTO.idFilho);
 
-            if (viagemFilho.Filho.embarcado == true)
+            if (passageiroDTO.embarcado)
             {
                 viagemFilho.dataEmbarque = DateTime.Now;
                 viagemFilho.posicaoEmbarque_latitude = passageiroDTO.posicao_latitude;

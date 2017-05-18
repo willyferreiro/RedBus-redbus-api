@@ -214,6 +214,7 @@
       <DependentUpon>redbusdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\AtualizaPassageiroDTO.cs" />
+    <Compile Include="Models\FimViagemDTO.cs" />
     <Compile Include="Models\InicioViagemDTO.cs" />
     <Compile Include="Models\Mensagem.cs">
       <DependentUpon>redbusdb.tt</DependentUpon>
