@@ -27,37 +27,26 @@ namespace RedBus_api.Controllers
         }
 
 
-        /// <summary>
-        /// Retorna os filhos com base no id do responsavel
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>List<Filho></returns>
-        [Route("api/filhos/{id}")]
         [HttpGet]
-        public IHttpActionResult GetFilhos(long id)
+        [Route("api/filhos/{idResponsavel}")]
+        public IHttpActionResult GetFilhos(long idResponsavel)
         {
-            List<Filho> filhos = db.Filho.Where(e => e.idResponsavel == id)
+            List<Filho> filhos = db.Filho.Where(e => e.idResponsavel == idResponsavel)
                 .ToList<Filho>();
 
             return Ok(filhos);
         }
 
-        /// <summary>
-        /// Retorna os passageiros com base no id do motorista que os cadastrou
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns>List<Filho></returns>
-        [Route("api/passageiros/{id}")]
         [HttpGet]
-        public IHttpActionResult GetPassageiros(long id)
+        [Route("api/passageiros/{idMotorista}")]
+        public IHttpActionResult GetPassageiros(long idMotorista)
         {
-            List<Filho> filhos = db.Filho.Where(e => e.idMotorista == id)
+            List<Filho> filhos = db.Filho.Where(e => e.idMotorista == idMotorista)
                 .ToList<Filho>();
 
             return Ok(filhos);
         }
 
-        // PUT: api/Filho/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutFilho(long id, Filho filho)
         {
@@ -92,7 +81,6 @@ namespace RedBus_api.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/Filho
         [ResponseType(typeof(Filho))]
         public IHttpActionResult PostFilho(Filho filho)
         {
@@ -122,7 +110,6 @@ namespace RedBus_api.Controllers
             return CreatedAtRoute("DefaultApi", new { id = filho.idFilho }, filho);
         }
 
-        // DELETE: api/Filho/5
         [ResponseType(typeof(Filho))]
         public IHttpActionResult DeleteFilho(long id)
         {
