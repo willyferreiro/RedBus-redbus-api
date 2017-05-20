@@ -14,6 +14,8 @@
         public double? posicao_longitutdeEscola { get; set; }
         public byte[] foto { get; set; }
         public byte[] fotoCompleta { get; set; }
+        public double? posicao_latitude { get; set; }
+        public double? posicao_longitude { get; set; }
         public ViagemFilhoDTO viagemFilho { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace RedBus_api.Models
 using System;
     using System.Collections.Generic;
     
-public partial class UltimaVIagemFilhoView
+public partial class UltimaViagemFilhoView
 {
 
     public long idFilho { get; set; }
@@ -55,12 +55,6 @@ public partial class UltimaVIagemFilhoView
     public Nullable<double> posicaoDesembarque_latitude { get; set; }
 
     public Nullable<double> posicaoDesembarque_longitude { get; set; }
-
-    public Nullable<double> posicao_latitude { get; set; }
-
-    public Nullable<double> posicao_longitude { get; set; }
-
-    public byte[] fotoMotorista { get; set; }
 
 }
 

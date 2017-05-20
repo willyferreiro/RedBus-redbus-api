@@ -21,7 +21,7 @@
         <AssociationConnector Association="redbusdbModel.FK_Viagem_Motorista" ManuallyRouted="false" />
         <AssociationConnector Association="redbusdbModel.FK_Responsavel_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="redbusdbModel.FK_ViagemFilho_Viagem" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="redbusdbModel.UltimaVIagemFilhoView" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="redbusdbModel.UltimaViagemFilhoView" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

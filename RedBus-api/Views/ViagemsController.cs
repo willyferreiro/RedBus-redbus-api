@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using RedBus_api.DTOs;
+using RedBus_api.Models;
 
 namespace RedBus_api.Views
 {

@@ -90,8 +90,8 @@
           <Property Name="posicaoDesembarque_longitude" Type="float" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'redbusdb.dbo.UltimaVIagemFilhoView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
-        <EntityType Name="UltimaVIagemFilhoView">
+warning 6002: The table/view 'redbusdb.dbo.UltimaViagemFilhoView' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UltimaViagemFilhoView">
           <Key>
             <PropertyRef Name="idFilho" />
             <PropertyRef Name="idResponsavel" />
@@ -118,9 +118,6 @@ warning 6002: The table/view 'redbusdb.dbo.UltimaVIagemFilhoView' does not have 
           <Property Name="posicaoEmbarque_longitude" Type="float" />
           <Property Name="posicaoDesembarque_latitude" Type="float" />
           <Property Name="posicaoDesembarque_longitude" Type="float" />
-          <Property Name="posicao_latitude" Type="float" />
-          <Property Name="posicao_longitude" Type="float" />
-          <Property Name="fotoMotorista" Type="varbinary(max)" />
         </EntityType>
         <Association Name="FK_Filho_Motorista">
           <End Role="Motorista" Type="Self.Motorista" Multiplicity="1" />
@@ -238,31 +235,28 @@ warning 6002: The table/view 'redbusdb.dbo.UltimaVIagemFilhoView' does not have 
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Viagem" EntityType="Self.Viagem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ViagemFilho" EntityType="Self.ViagemFilho" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="UltimaVIagemFilhoView" EntityType="Self.UltimaVIagemFilhoView" store:Type="Views" store:Schema="dbo">
+          <EntitySet Name="UltimaViagemFilhoView" EntityType="Self.UltimaViagemFilhoView" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
-    [UltimaVIagemFilhoView].[idFilho] AS [idFilho], 
-    [UltimaVIagemFilhoView].[idResponsavel] AS [idResponsavel], 
-    [UltimaVIagemFilhoView].[idMotorista] AS [idMotorista], 
-    [UltimaVIagemFilhoView].[nome] AS [nome], 
-    [UltimaVIagemFilhoView].[emViagem] AS [emViagem], 
-    [UltimaVIagemFilhoView].[embarcado] AS [embarcado], 
-    [UltimaVIagemFilhoView].[posicao_latitudeCasa] AS [posicao_latitudeCasa], 
-    [UltimaVIagemFilhoView].[posicao_longitutdeCasa] AS [posicao_longitutdeCasa], 
-    [UltimaVIagemFilhoView].[posicao_latitudeEscola] AS [posicao_latitudeEscola], 
-    [UltimaVIagemFilhoView].[posicao_longitutdeEscola] AS [posicao_longitutdeEscola], 
-    [UltimaVIagemFilhoView].[foto] AS [foto], 
-    [UltimaVIagemFilhoView].[fotoCompleta] AS [fotoCompleta], 
-    [UltimaVIagemFilhoView].[idViagem] AS [idViagem], 
-    [UltimaVIagemFilhoView].[dataEmbarque] AS [dataEmbarque], 
-    [UltimaVIagemFilhoView].[dataDesembarque] AS [dataDesembarque], 
-    [UltimaVIagemFilhoView].[posicaoEmbarque_latitude] AS [posicaoEmbarque_latitude], 
-    [UltimaVIagemFilhoView].[posicaoEmbarque_longitude] AS [posicaoEmbarque_longitude], 
-    [UltimaVIagemFilhoView].[posicaoDesembarque_latitude] AS [posicaoDesembarque_latitude], 
-    [UltimaVIagemFilhoView].[posicaoDesembarque_longitude] AS [posicaoDesembarque_longitude], 
-    [UltimaVIagemFilhoView].[posicao_latitude] AS [posicao_latitude], 
-    [UltimaVIagemFilhoView].[posicao_longitude] AS [posicao_longitude], 
-    [UltimaVIagemFilhoView].[fotoMotorista] AS [fotoMotorista]
-    FROM [dbo].[UltimaVIagemFilhoView] AS [UltimaVIagemFilhoView]</DefiningQuery>
+    [UltimaViagemFilhoView].[idFilho] AS [idFilho], 
+    [UltimaViagemFilhoView].[idResponsavel] AS [idResponsavel], 
+    [UltimaViagemFilhoView].[idMotorista] AS [idMotorista], 
+    [UltimaViagemFilhoView].[nome] AS [nome], 
+    [UltimaViagemFilhoView].[emViagem] AS [emViagem], 
+    [UltimaViagemFilhoView].[embarcado] AS [embarcado], 
+    [UltimaViagemFilhoView].[posicao_latitudeCasa] AS [posicao_latitudeCasa], 
+    [UltimaViagemFilhoView].[posicao_longitutdeCasa] AS [posicao_longitutdeCasa], 
+    [UltimaViagemFilhoView].[posicao_latitudeEscola] AS [posicao_latitudeEscola], 
+    [UltimaViagemFilhoView].[posicao_longitutdeEscola] AS [posicao_longitutdeEscola], 
+    [UltimaViagemFilhoView].[foto] AS [foto], 
+    [UltimaViagemFilhoView].[fotoCompleta] AS [fotoCompleta], 
+    [UltimaViagemFilhoView].[idViagem] AS [idViagem], 
+    [UltimaViagemFilhoView].[dataEmbarque] AS [dataEmbarque], 
+    [UltimaViagemFilhoView].[dataDesembarque] AS [dataDesembarque], 
+    [UltimaViagemFilhoView].[posicaoEmbarque_latitude] AS [posicaoEmbarque_latitude], 
+    [UltimaViagemFilhoView].[posicaoEmbarque_longitude] AS [posicaoEmbarque_longitude], 
+    [UltimaViagemFilhoView].[posicaoDesembarque_latitude] AS [posicaoDesembarque_latitude], 
+    [UltimaViagemFilhoView].[posicaoDesembarque_longitude] AS [posicaoDesembarque_longitude]
+    FROM [dbo].[UltimaViagemFilhoView] AS [UltimaViagemFilhoView]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Filho_Motorista" Association="Self.FK_Filho_Motorista">
             <End Role="Motorista" EntitySet="Motorista" />
@@ -559,9 +553,9 @@ warning 6002: The table/view 'redbusdb.dbo.UltimaVIagemFilhoView' does not have 
             <End Role="Viagem" EntitySet="Viagem" />
             <End Role="ViagemFilho" EntitySet="ViagemFilho" />
           </AssociationSet>
-          <EntitySet Name="UltimaVIagemFilhoView" EntityType="redbusdbModel.UltimaVIagemFilhoView" />
+          <EntitySet Name="UltimaViagemFilhoView" EntityType="redbusdbModel.UltimaViagemFilhoView" />
         </EntityContainer>
-        <EntityType Name="UltimaVIagemFilhoView">
+        <EntityType Name="UltimaViagemFilhoView">
           <Key>
             <PropertyRef Name="idFilho" />
             <PropertyRef Name="idResponsavel" />
@@ -588,9 +582,6 @@ warning 6002: The table/view 'redbusdb.dbo.UltimaVIagemFilhoView' does not have 
           <Property Name="posicaoEmbarque_longitude" Type="Double" />
           <Property Name="posicaoDesembarque_latitude" Type="Double" />
           <Property Name="posicaoDesembarque_longitude" Type="Double" />
-          <Property Name="posicao_latitude" Type="Double" />
-          <Property Name="posicao_longitude" Type="Double" />
-          <Property Name="fotoMotorista" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -688,12 +679,9 @@ warning 6002: The table/view 'redbusdb.dbo.UltimaVIagemFilhoView' does not have 
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-          <EntitySetMapping Name="UltimaVIagemFilhoView">
-            <EntityTypeMapping TypeName="redbusdbModel.UltimaVIagemFilhoView">
-              <MappingFragment StoreEntitySet="UltimaVIagemFilhoView">
-                <ScalarProperty Name="fotoMotorista" ColumnName="fotoMotorista" />
-                <ScalarProperty Name="posicao_longitude" ColumnName="posicao_longitude" />
-                <ScalarProperty Name="posicao_latitude" ColumnName="posicao_latitude" />
+          <EntitySetMapping Name="UltimaViagemFilhoView">
+            <EntityTypeMapping TypeName="redbusdbModel.UltimaViagemFilhoView">
+              <MappingFragment StoreEntitySet="UltimaViagemFilhoView">
                 <ScalarProperty Name="posicaoDesembarque_longitude" ColumnName="posicaoDesembarque_longitude" />
                 <ScalarProperty Name="posicaoDesembarque_latitude" ColumnName="posicaoDesembarque_latitude" />
                 <ScalarProperty Name="posicaoEmbarque_longitude" ColumnName="posicaoEmbarque_longitude" />

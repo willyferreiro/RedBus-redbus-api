@@ -5,8 +5,6 @@ namespace RedBus_api.DTOs
     public class ViagemFilhoDTO
     {
         public long idViagem { get; set; }
-        public double? posicao_latitude { get; set; }
-        public double? posicao_longitude { get; set; }
         public DateTime? dataEmbarque { get; set; }
         public DateTime? dataDesembarque { get; set; }
         public double? posicaoEmbarque_latitude { get; set; }

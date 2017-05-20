@@ -12,22 +12,32 @@
 namespace RedBus_api.Models
 {
 
-    using System;
+using System;
     using System.Collections.Generic;
+    
+public partial class Mensagem
+{
 
-    public partial class Mensagem
-    {
-        public long idMensagem { get; set; }
-        public long idUsuarioDe { get; set; }
-        public long idUsuarioPara { get; set; }
-        public System.DateTime dataMensagem { get; set; }
-        public string mensagem { get; set; }
-        public bool entregue { get; set; }
-        public bool visualizada { get; set; }
+    public long idMensagem { get; set; }
 
-        public virtual Usuario UsuarioDe { get; set; }
-        public virtual Usuario UsuarioPara { get; set; }
+    public long idUsuarioDe { get; set; }
 
-    }
+    public long idUsuarioPara { get; set; }
+
+    public System.DateTime dataMensagem { get; set; }
+
+    public string mensagem { get; set; }
+
+    public bool entregue { get; set; }
+
+    public bool visualizada { get; set; }
+
+
+
+    public virtual Usuario UsuarioDe { get; set; }
+
+    public virtual Usuario UsuarioPara { get; set; }
+
+}
 
 }

@@ -206,6 +206,7 @@
     <Compile Include="Controllers\MotoristaController.cs" />
     <Compile Include="Controllers\ViagemController.cs" />
     <Compile Include="Controllers\ViagemFilhoController.cs" />
+    <Compile Include="DTOs\MotoristaFilhoDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -241,7 +242,7 @@
       <DependentUpon>redbusdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StatusViagem.cs" />
-    <Compile Include="Models\UltimaVIagemFilhoView.cs">
+    <Compile Include="Models\UltimaViagemFilhoView.cs">
       <DependentUpon>redbusdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Usuario.cs">
