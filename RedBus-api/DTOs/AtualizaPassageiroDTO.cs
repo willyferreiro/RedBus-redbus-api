@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace RedBus_api.Models
+﻿namespace RedBus_api.DTOs
 {
     public class AtualizaPassageiroDTO
     {

@@ -213,8 +213,9 @@
     <Compile Include="Models\Filho.cs">
       <DependentUpon>redbusdb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\AtualizaPassageiroDTO.cs" />
-    <Compile Include="Models\ViagemDTO.cs" />
+    <Compile Include="DTOs\AtualizaPassageiroDTO.cs" />
+    <Compile Include="DTOs\FilhoDTO.cs" />
+    <Compile Include="DTOs\ViagemDTO.cs" />
     <Compile Include="Models\Mensagem.cs">
       <DependentUpon>redbusdb.tt</DependentUpon>
     </Compile>
@@ -240,6 +241,9 @@
       <DependentUpon>redbusdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\StatusViagem.cs" />
+    <Compile Include="Models\UltimaVIagemFilhoView.cs">
+      <DependentUpon>redbusdb.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Usuario.cs">
       <DependentUpon>redbusdb.tt</DependentUpon>
     </Compile>
@@ -249,6 +253,7 @@
     <Compile Include="Models\ViagemFilho.cs">
       <DependentUpon>redbusdb.tt</DependentUpon>
     </Compile>
+    <Compile Include="DTOs\ViagemFilhoDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\ViagemsController.cs" />
   </ItemGroup>

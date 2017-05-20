@@ -48,6 +48,8 @@ public partial class redbusdb : DbContext
 
     public virtual DbSet<ViagemFilho> ViagemFilho { get; set; }
 
+    public virtual DbSet<UltimaVIagemFilhoView> UltimaVIagemFilhoView { get; set; }
+
 }
 
 }

@@ -8,7 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using RedBus_api.Models;
+using RedBus_api.DTOs;
 
 namespace RedBus_api.Controllers
 {

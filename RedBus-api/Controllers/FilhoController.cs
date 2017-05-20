@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Web.Http;
 using System.Web.Http.Description;
-using RedBus_api.Models;
+using RedBus_api.DTOs;
 using System.Collections.Generic;
 
 namespace RedBus_api.Controllers
@@ -13,7 +13,6 @@ namespace RedBus_api.Controllers
     {
         private redbusdb db = new redbusdb();
 
-        // GET: api/Filho/5
         [ResponseType(typeof(Filho))]
         public IHttpActionResult GetFilho(long id)
         {
@@ -29,10 +28,15 @@ namespace RedBus_api.Controllers
 
         [HttpGet]
         [Route("api/filhos/{idResponsavel}")]
+        [ResponseType(typeof(FilhoDTO))]
         public IHttpActionResult GetFilhos(long idResponsavel)
         {
-            List<Filho> filhos = db.Filho.Where(e => e.idResponsavel == idResponsavel)
+            List<Filho> filhos = db.Filho
+                .Include(e => e.Viagem)
+                .Where(e => e.idResponsavel == idResponsavel)
                 .ToList<Filho>();
+
+            foreach
 
             return Ok(filhos);
         }
