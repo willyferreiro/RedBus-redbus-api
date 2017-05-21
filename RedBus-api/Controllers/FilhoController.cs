@@ -55,15 +55,18 @@ namespace RedBus_api.Controllers
                 filho.posicao_longitutdeEscola = filhoViagem.posicao_longitutdeEscola;
                 filho.foto = filhoViagem.foto;
                 filho.fotoCompleta = filhoViagem.fotoCompleta;
-                
-                filho.viagemFilho.idViagem = filhoViagem.idViagem;
-                filho.viagemFilho.dataEmbarque = filhoViagem.dataEmbarque;
-                filho.viagemFilho.dataDesembarque = filhoViagem.dataDesembarque;
-                filho.viagemFilho.posicaoEmbarque_latitude = filhoViagem.posicaoEmbarque_latitude;
-                filho.viagemFilho.posicaoEmbarque_longitude = filhoViagem.posicaoEmbarque_longitude;
-                filho.viagemFilho.posicaoDesembarque_latitude = filhoViagem.posicaoDesembarque_latitude;
-                filho.viagemFilho.posicaoDesembarque_longitude = filhoViagem.posicaoDesembarque_longitude;
-                    
+
+                if (filhoViagem.idViagem != null)
+                {
+                    filho.viagemFilho.idViagem = (long)filhoViagem.idViagem;
+                    filho.viagemFilho.dataEmbarque = filhoViagem.dataEmbarque;
+                    filho.viagemFilho.dataDesembarque = filhoViagem.dataDesembarque;
+                    filho.viagemFilho.posicaoEmbarque_latitude = filhoViagem.posicaoEmbarque_latitude;
+                    filho.viagemFilho.posicaoEmbarque_longitude = filhoViagem.posicaoEmbarque_longitude;
+                    filho.viagemFilho.posicaoDesembarque_latitude = filhoViagem.posicaoDesembarque_latitude;
+                    filho.viagemFilho.posicaoDesembarque_longitude = filhoViagem.posicaoDesembarque_longitude;
+                }
+
                 filhos.Add(filho);
             }
 

@@ -42,7 +42,7 @@ public partial class UltimaViagemFilhoView
 
     public byte[] fotoCompleta { get; set; }
 
-    public long idViagem { get; set; }
+    public Nullable<long> idViagem { get; set; }
 
     public Nullable<System.DateTime> dataEmbarque { get; set; }
 

@@ -97,7 +97,6 @@ warning 6002: The table/view 'redbusdb.dbo.UltimaViagemFilhoView' does not have 
             <PropertyRef Name="idResponsavel" />
             <PropertyRef Name="idMotorista" />
             <PropertyRef Name="nome" />
-            <PropertyRef Name="idViagem" />
           </Key>
           <Property Name="idFilho" Type="bigint" Nullable="false" />
           <Property Name="idResponsavel" Type="bigint" Nullable="false" />
@@ -111,7 +110,7 @@ warning 6002: The table/view 'redbusdb.dbo.UltimaViagemFilhoView' does not have 
           <Property Name="posicao_longitutdeEscola" Type="float" />
           <Property Name="foto" Type="varbinary(max)" />
           <Property Name="fotoCompleta" Type="varbinary(max)" />
-          <Property Name="idViagem" Type="bigint" Nullable="false" />
+          <Property Name="idViagem" Type="bigint" />
           <Property Name="dataEmbarque" Type="datetime" />
           <Property Name="dataDesembarque" Type="datetime" />
           <Property Name="posicaoEmbarque_latitude" Type="float" />
@@ -561,7 +560,6 @@ warning 6002: The table/view 'redbusdb.dbo.UltimaViagemFilhoView' does not have 
             <PropertyRef Name="idResponsavel" />
             <PropertyRef Name="idMotorista" />
             <PropertyRef Name="nome" />
-            <PropertyRef Name="idViagem" />
           </Key>
           <Property Name="idFilho" Type="Int64" Nullable="false" />
           <Property Name="idResponsavel" Type="Int64" Nullable="false" />
@@ -575,7 +573,7 @@ warning 6002: The table/view 'redbusdb.dbo.UltimaViagemFilhoView' does not have 
           <Property Name="posicao_longitutdeEscola" Type="Double" />
           <Property Name="foto" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="fotoCompleta" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <Property Name="idViagem" Type="Int64" Nullable="false" />
+          <Property Name="idViagem" Type="Int64" />
           <Property Name="dataEmbarque" Type="DateTime" Precision="3" />
           <Property Name="dataDesembarque" Type="DateTime" Precision="3" />
           <Property Name="posicaoEmbarque_latitude" Type="Double" />
