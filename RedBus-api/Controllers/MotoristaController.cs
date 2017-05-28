@@ -34,71 +34,70 @@ namespace RedBus_api.Controllers
             return Ok(motorista);
         }
 
-        // PUT: api/Motoristas/5
-        //[ResponseType(typeof(void))]
-        //public IHttpActionResult PutMotorista(long id, Motorista motorista)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+        [ResponseType(typeof(void))]
+        public IHttpActionResult PutMotorista(long id, Motorista motorista)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        //    if (id != motorista.idUsuario)
-        //    {
-        //        return BadRequest();
-        //    }
+            if (id != motorista.idUsuario)
+            {
+                return BadRequest();
+            }
 
-        //    db.Entry(motorista).State = EntityState.Modified;
+            db.Entry(motorista).State = EntityState.Modified;
 
-        //    try
-        //    {
-        //        db.SaveChanges();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!MotoristaExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!MotoristaExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-        //    return StatusCode(HttpStatusCode.NoContent);
-        //}
+            return StatusCode(HttpStatusCode.NoContent);
+        }
 
-        // POST: api/Motoristas
-        //[ResponseType(typeof(Motorista))]
-        //public IHttpActionResult PostMotorista(Motorista motorista)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
+        POST: api/Motoristas
+       [ResponseType(typeof(Motorista))]
+        public IHttpActionResult PostMotorista(Motorista motorista)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
 
-        //    db.Motorista.Add(motorista);
+            db.Motorista.Add(motorista);
 
-        //    try
-        //    {
-        //        db.SaveChanges();
-        //    }
-        //    catch (DbUpdateException)
-        //    {
-        //        if (MotoristaExists(motorista.idUsuario))
-        //        {
-        //            return Conflict();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                if (MotoristaExists(motorista.idUsuario))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-        //    return CreatedAtRoute("DefaultApi", new { id = motorista.idUsuario }, motorista);
-        //}
-        
+            return CreatedAtRoute("DefaultApi", new { id = motorista.idUsuario }, motorista);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
