@@ -146,6 +146,71 @@ namespace RedBus_api.Controllers
             return CreatedAtRoute("DefaultApi", new { id = filho.idFilho }, filho);
         }
 
+        [HttpPost]
+        [Route("api/passageiro")]
+        public IHttpActionResult PostPassageiro(PassageiroDTO passageiro)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            decimal telefone = decimal.Parse(passageiro.dddResponsavel.ToString() + passageiro.telefoneResponsavel.ToString());
+
+            Filho filho = new Filho();
+            filho.idMotorista = passageiro.idMotorista;
+            filho.nome = passageiro.nome;
+
+            //filho.enderecoCasa = passageiro.enderecoCasa;
+            //filho.enderecoEscola = passageiro.enderecoEscola;
+            
+            Responsavel resp = db.Responsavel.SingleOrDefault(e => e.Usuario.telefone == telefone);
+            if (resp != null)
+            {
+                filho.Responsavel = resp;
+            }
+            else
+            {
+                resp = new Responsavel()
+                {
+                    Usuario = new Usuario()
+                    {
+                        telefone = decimal.Parse(passageiro.dddResponsavel.ToString() + passageiro.telefoneResponsavel.ToString()),
+                        tipoUsuario = "R"
+                    }
+                };
+                filho.Responsavel = resp;
+                db.Entry(filho.Responsavel).State = EntityState.Added;
+            }
+
+            filho.posicao_latitudeCasa = passageiro.posicao_latitudeCasa;
+            filho.posicao_longitutdeCasa = passageiro.posicao_longitutdeCasa;
+            filho.posicao_latitudeEscola = passageiro.posicao_latitudeEscola;
+            filho.posicao_longitutdeEscola = passageiro.posicao_longitutdeEscola;
+            filho.foto = passageiro.foto;
+            filho.fotoCompleta = passageiro.fotoCompleta;
+            
+            db.Filho.Add(filho);
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                if (FilhoExists(filho.idFilho))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return CreatedAtRoute("DefaultApi", new { id = filho.idFilho }, filho);
+        }
+
         [ResponseType(typeof(Filho))]
         public IHttpActionResult DeleteFilho(long id)
         {

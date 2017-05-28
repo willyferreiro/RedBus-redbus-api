@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="152eb388720a4532a7cccbb5214f3327" Name="Diagram1" ZoomLevel="94">
+      <Diagram DiagramId="152eb388720a4532a7cccbb5214f3327" Name="Diagram1" ZoomLevel="66">
         <EntityTypeShape EntityType="redbusdbModel.Filho" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
         <EntityTypeShape EntityType="redbusdbModel.Mensagem" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="redbusdbModel.Motorista" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
