@@ -143,7 +143,7 @@ namespace RedBus_api.Controllers
             db.Viagem.Add(viagem);
             
             db.SaveChanges();
-
+        
             return CreatedAtRoute("DefaultApi", new { controller = "viagem", id = viagem.idViagem }, viagem);
         }
 
@@ -188,23 +188,6 @@ namespace RedBus_api.Controllers
 
         //    return CreatedAtRoute("DefaultApi", new { id = viagem.idViagem }, viagem);
         //}
-
-        // DELETE: api/Viagem/5
-
-        [ResponseType(typeof(Viagem))]
-        public IHttpActionResult DeleteViagem(long id)
-        {
-            Viagem viagem = db.Viagem.Find(id);
-            if (viagem == null)
-            {
-                return NotFound();
-            }
-
-            db.Viagem.Remove(viagem);
-            db.SaveChanges();
-
-            return Ok(viagem);
-        }
 
         protected override void Dispose(bool disposing)
         {

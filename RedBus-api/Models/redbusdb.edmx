@@ -15,6 +15,8 @@
           <Property Name="nome" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="emViagem" Type="bit" />
           <Property Name="embarcado" Type="bit" />
+          <Property Name="enderecoCasa" Type="varchar" MaxLength="200" />
+          <Property Name="enderecoEscola" Type="varchar" MaxLength="200" />
           <Property Name="posicao_latitudeCasa" Type="float" />
           <Property Name="posicao_longitutdeCasa" Type="float" />
           <Property Name="posicao_latitudeEscola" Type="float" />
@@ -317,6 +319,8 @@ warning 6002: The table/view 'redbusdb.dbo.UltimaViagemFilhoView' does not have 
           <NavigationProperty Name="Motorista" Relationship="Self.FK_Filho_Motorista" FromRole="Filho" ToRole="Motorista" />
           <NavigationProperty Name="Responsavel" Relationship="Self.FK_Filho_Responsavel" FromRole="Filho" ToRole="Responsavel" />
           <NavigationProperty Name="ViagemFilho" Relationship="Self.FK_ViagemFilho_Filho" FromRole="Filho" ToRole="ViagemFilho" />
+          <Property Name="enderecoCasa" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="enderecoEscola" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Mensagem">
           <Key>
@@ -360,8 +364,8 @@ warning 6002: The table/view 'redbusdb.dbo.UltimaViagemFilhoView' does not have 
           </Key>
           <Property Name="idUsuario" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="telefone" Type="Decimal" Precision="11" Scale="0" Nullable="false" />
-          <Property Name="nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="senha" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="senha" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
           <Property Name="tipoUsuario" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <NavigationProperty Name="MensagemDe" Relationship="Self.FK_Mensagem_Usuario" FromRole="Usuario" ToRole="Mensagem" />
           <NavigationProperty Name="MensagemPara" Relationship="Self.FK_Mensagem_Usuario1" FromRole="Usuario" ToRole="Mensagem" />
@@ -590,7 +594,9 @@ warning 6002: The table/view 'redbusdb.dbo.UltimaViagemFilhoView' does not have 
     <EntitySetMapping Name="Filho">
       <EntityTypeMapping TypeName="IsTypeOf(redbusdbModel.Filho)">
         <MappingFragment StoreEntitySet="Filho">
-          <ScalarProperty Name="idFilho" ColumnName="idFilho" />
+          <ScalarProperty Name="enderecoEscola" ColumnName="enderecoEscola" />
+                <ScalarProperty Name="enderecoCasa" ColumnName="enderecoCasa" />
+                <ScalarProperty Name="idFilho" ColumnName="idFilho" />
           <ScalarProperty Name="idResponsavel" ColumnName="idResponsavel" />
           <ScalarProperty Name="idMotorista" ColumnName="idMotorista" />
           <ScalarProperty Name="nome" ColumnName="nome" />

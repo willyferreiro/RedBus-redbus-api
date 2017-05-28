@@ -34,6 +34,8 @@ namespace RedBus_api.Models
         public Nullable<double> posicao_longitutdeEscola { get; set; }
         public byte[] foto { get; set; }
         public byte[] fotoCompleta { get; set; }
+        public string enderecoCasa { get; set; }
+        public string enderecoEscola { get; set; }
     
         public virtual Motorista Motorista { get; set; }
         public virtual Responsavel Responsavel { get; set; }

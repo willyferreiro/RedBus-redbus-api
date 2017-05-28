@@ -34,43 +34,6 @@ namespace RedBus_api.Controllers
             return Ok(viagemFilho);
         }
 
-        //[HttpPut]
-        //[ResponseType(typeof(void))]
-        //[Route("api/viagemfilho/{idViagem}/{idFilho}")]
-        //public IHttpActionResult PutViagemFilho(long idViagem, long idFilho, ViagemFilho viagemFilho)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest(ModelState);
-        //    }
-
-        //    if (idViagem != viagemFilho.idViagem && idFilho != viagemFilho.idFilho)
-        //    {
-        //        return BadRequest();
-        //    }
-
-        //    db.Entry(viagemFilho).State = EntityState.Modified;
-        //    db.Entry(viagemFilho.Filho).State = EntityState.Modified;
-
-        //    try
-        //    {
-        //        db.SaveChanges();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!ViagemFilhoExists(idViagem, idFilho))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
-
-        //    return StatusCode(HttpStatusCode.NoContent);
-        //}
-        
         [HttpPut]
         [ResponseType(typeof(void))]
         [Route("api/passageiro/{idViagem}/{idFilho}")]

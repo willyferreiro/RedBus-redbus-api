@@ -26,7 +26,6 @@ namespace RedBus_api.Controllers
             return Ok(filho);
         }
 
-
         [HttpGet]
         [Route("api/filhos/{idResponsavel}")]
         [ResponseType(typeof(FilhoDTO))]
@@ -161,17 +160,15 @@ namespace RedBus_api.Controllers
             filho.idMotorista = passageiro.idMotorista;
             filho.nome = passageiro.nome;
 
-            //filho.enderecoCasa = passageiro.enderecoCasa;
-            //filho.enderecoEscola = passageiro.enderecoEscola;
-            
-            Responsavel resp = db.Responsavel.SingleOrDefault(e => e.Usuario.telefone == telefone);
-            if (resp != null)
-            {
-                filho.Responsavel = resp;
-            }
-            else
-            {
-                resp = new Responsavel()
+            filho.enderecoCasa = passageiro.enderecoCasa;
+            filho.enderecoEscola = passageiro.enderecoEscola;
+
+            filho.Responsavel = db.Responsavel.SingleOrDefault(
+                e => e.Usuario.telefone == telefone && e.Usuario.tipoUsuario == "R");
+
+            if (filho.Responsavel == null)
+            { 
+                filho.Responsavel = new Responsavel()
                 {
                     Usuario = new Usuario()
                     {
@@ -179,8 +176,8 @@ namespace RedBus_api.Controllers
                         tipoUsuario = "R"
                     }
                 };
-                filho.Responsavel = resp;
                 db.Entry(filho.Responsavel).State = EntityState.Added;
+                db.Entry(filho.Responsavel.Usuario).State = EntityState.Added;
             }
 
             filho.posicao_latitudeCasa = passageiro.posicao_latitudeCasa;
@@ -192,23 +189,9 @@ namespace RedBus_api.Controllers
             
             db.Filho.Add(filho);
 
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateException)
-            {
-                if (FilhoExists(filho.idFilho))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return CreatedAtRoute("DefaultApi", new { id = filho.idFilho }, filho);
+            db.SaveChanges();
+        
+            return CreatedAtRoute("DefaultApi", new { controller = "filho", id = filho.idFilho }, filho);
         }
 
         [ResponseType(typeof(Filho))]

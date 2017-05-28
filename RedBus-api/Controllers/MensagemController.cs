@@ -33,41 +33,6 @@ namespace RedBus_api.Controllers
             return Ok(mensagens);
         }
 
-        // PUT: api/Mensagem/5
-        [ResponseType(typeof(void))]
-        public IHttpActionResult PutMensagem(long id, Mensagem mensagem)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            if (id != mensagem.idMensagem)
-            {
-                return BadRequest();
-            }
-
-            db.Entry(mensagem).State = EntityState.Modified;
-
-            try
-            {
-                db.SaveChanges();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!MensagemExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return StatusCode(HttpStatusCode.NoContent);
-        }
-
         // POST: api/Mensagem
         [ResponseType(typeof(Mensagem))]
         public IHttpActionResult PostMensagem(Mensagem mensagem)
@@ -96,22 +61,6 @@ namespace RedBus_api.Controllers
             }
 
             return CreatedAtRoute("DefaultApi", new { id = mensagem.idMensagem }, mensagem);
-        }
-
-        // DELETE: api/Mensagem/5
-        [ResponseType(typeof(Mensagem))]
-        public IHttpActionResult DeleteMensagem(long id)
-        {
-            Mensagem mensagem = db.Mensagem.Find(id);
-            if (mensagem == null)
-            {
-                return NotFound();
-            }
-
-            db.Mensagem.Remove(mensagem);
-            db.SaveChanges();
-
-            return Ok(mensagem);
         }
 
         protected override void Dispose(bool disposing)
